@@ -14,13 +14,13 @@ const PreviewCard = ({ data }) => {
         href={`/resume/${data.id}`}
         className='card-image-container flex-1 relative'
       >
-        <Image
+        {/* <Image
           src={imageUrl}
           width={200}
           height={200}
           alt={title}
           className='h-full w-full absolute object-contain'
-        />
+        /> */}
       </Link>
     </div>
   )

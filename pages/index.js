@@ -1,9 +1,16 @@
+import { useEffect, useState } from 'react'
 import CreateCard from '../components/CreateCard'
 import Layout from '../components/Layout'
 import PreviewCard from '../components/PreviewCard'
-import data from '../utils/data'
+import { resumeLocalStore } from '../utils/localStorage'
 
-export default function Home({ resumes }) {
+export default function Home() {
+  const [resumes, setResumes] = useState([])
+
+  useEffect(() => {
+    setResumes(resumeLocalStore.all())
+  }, [])
+
   return (
     <Layout>
       <div className='section py-10'>
@@ -18,10 +25,10 @@ export default function Home({ resumes }) {
   )
 }
 
-export async function getStaticProps(context) {
-  return {
-    props: {
-      resumes: data.resumes,
-    },
-  }
-}
+// export async function getStaticProps(context) {
+//   return {
+//     props: {
+//       resumes: data.resumes,
+//     },
+//   }
+// }

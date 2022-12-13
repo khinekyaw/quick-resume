@@ -9,6 +9,7 @@ import { toggleMark } from '../utils/editor'
 import EditorToolBar from './editor/EditorToolBar'
 import Element from './editor/Element'
 import Leaf from './editor/Leaf'
+import { resumeLocalStore } from '../utils/localStorage'
 
 const HOTKEYS = {
   'mod+b': 'bold',
@@ -17,42 +18,15 @@ const HOTKEYS = {
   'mod+`': 'code',
 }
 
-const initialValue = [
-  {
-    type: 'h1',
-    children: [{ text: 'Kate Miller' }],
-  },
-  {
-    type: 'paragraph',
-    children: [
-      {
-        text: 'An engineering manager building and leading engineering teams at Apple Inc',
-      },
-    ],
-  },
-  {
-    type: 'paragraph',
-    children: [
-      {
-        text: '',
-      },
-    ],
-  },
-  {
-    type: 'h2',
-    children: [{ text: 'Work Experience' }],
-  },
-  {
-    type: 'h3',
-    children: [{ text: 'Apple Inc' }],
-  },
-  {
-    type: 'paragraph',
-    children: [{ bold: true, text: 'Engineering Manager' }],
-  },
-]
-
-const ResumeEditor = () => {
+const ResumeEditor = ({ value }) => {
+  const initialValue = value
+    ? value
+    : [
+        {
+          type: 'paragraph',
+          children: [{ text: '' }],
+        },
+      ]
   const renderElement = useCallback(props => <Element {...props} />, [])
   const renderLeaf = useCallback(props => <Leaf {...props} />, [])
   const editor = useMemo(() => withHistory(withReact(createEditor())), [])
@@ -67,8 +41,22 @@ const ResumeEditor = () => {
     }
   }
 
+  const handleOnChange = value => {
+    const isAstChange = editor.operations.some(
+      op => 'set_selection' !== op.type
+    )
+    if (isAstChange) {
+      resumeLocalStore.update({
+        id: '1670942146283',
+        updatedAt: new Date().toLocaleString(),
+        title: 'My Resume',
+        content: value,
+      })
+    }
+  }
+
   return (
-    <Slate editor={editor} value={initialValue}>
+    <Slate editor={editor} value={initialValue} onChange={handleOnChange}>
       <EditorToolBar />
       <Editable
         autoFocus

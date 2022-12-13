@@ -3,7 +3,7 @@ import React, { Fragment } from 'react'
 import Footer from './Footer'
 import Header from './Header'
 
-const Layout = ({ title, children }) => {
+const Layout = ({ title, children, showNav = true }) => {
   return (
     <Fragment>
       <Head>
@@ -12,7 +12,7 @@ const Layout = ({ title, children }) => {
         <link rel='icon' href='/favicon.ico' />
       </Head>
       <div className='flex flex-col justify-between'>
-        <Header />
+        {showNav && <Header />}
         <main className='min-h-screen mt-16'>{children}</main>
         <Footer />
       </div>
