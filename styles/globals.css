@@ -103,6 +103,35 @@ body {
     @apply bg-indigo-100 border-b;
 }
 
+.resume-preview code {
+    @apply p-1 text-sm bg-gray-100 rounded text-slate-700
+}
+
+.resume-preview p {
+    @apply mb-1
+}
+
+.resume-preview h1 {
+    @apply text-4xl mb-5 font-medium text-indigo-500;
+}
+
+.resume-preview h2 {
+    @apply text-2xl mb-4 font-medium border-b border-indigo-500;
+}
+
+.resume-preview h3 {
+    @apply text-xl mb-3 font-medium;
+}
+
+.resume-preview ul {
+    @apply list-disc list-inside mb-3 mx-4;
+}
+
+.resume-preview tr {
+    @apply bg-indigo-100 border-b;
+}
+
+
 .icon-checkbox {
     @apply w-6 h-6 m-1 bg-white flex justify-center items-center 
     rounded;
@@ -112,4 +141,8 @@ body {
 
 .icon-checkbox.active {
     @apply bg-indigo-100 text-indigo-600;
+}
+
+.header {
+    @apply bg-white opacity-90 backdrop-blur-lg fixed w-full z-50;
 }

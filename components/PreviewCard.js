@@ -1,10 +1,13 @@
-import Image from 'next/image'
 import Link from 'next/link'
 import { Menu } from '@headlessui/react'
 import { TbDotsVertical, TbPencil, TbTrash } from 'react-icons/tb'
 
-import { resumeLocalStore } from '../utils/localStorage'
-import { useState } from 'react'
+import { useMemo, useState } from 'react'
+import { Editable, Slate, withReact } from 'slate-react'
+import { createEditor } from 'slate'
+import Element from './editor/Element'
+import Leaf from './editor/Leaf'
+import { editorInitialValue } from '../utils/editor'
 
 const OptionDropdown = ({ onDelete, onRename }) => (
   <Menu as='div' className='relative'>
@@ -32,9 +35,10 @@ const OptionDropdown = ({ onDelete, onRename }) => (
 )
 
 const PreviewCard = ({ data, onDelete, onSubmit }) => {
-  const { title, updatedAt } = data
+  const { title, updatedAt, content } = data
   const [renmaing, setRenaming] = useState(false)
   const [editTitle, setEditTitle] = useState(title)
+  const editor = useMemo(() => withReact(createEditor()), [])
 
   const onRenameClick = () => {
     setRenaming(true)
@@ -74,15 +78,21 @@ const PreviewCard = ({ data, onDelete, onSubmit }) => {
       </div>
       <Link
         href={`/resume/${data.id}`}
-        className='card-image-container flex-1 relative'
+        className='card-image-container flex-1 relative overflow-hidden'
       >
-        {/* <Image
-          src={imageUrl}
-          width={200}
-          height={200}
-          alt={title}
-          className='h-full w-full absolute object-contain'
-        /> */}
+        <div className='bg-red-100 absolute w-full resume-preview'>
+          <div
+            className='w-[500px] min-h-[800px] scale-[45%] origin-top bg-white 
+          p-6 absolute left-1/2 -translate-x-1/2'
+          >
+            <Slate
+              editor={editor}
+              value={content ? content : editorInitialValue}
+            >
+              <Editable renderElement={Element} renderLeaf={Leaf} readOnly />
+            </Slate>
+          </div>
+        </div>
       </Link>
     </div>
   )

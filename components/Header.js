@@ -3,13 +3,13 @@ import Link from 'next/link'
 
 const Header = () => {
   return (
-    <div className='bg-white opacity-95 fixed w-full z-50'>
+    <div className='header'>
       <div className='section h-16'>
         <Link href='/' className='flex items-center hover:opacity-75'>
           <Image
-            src='/resume-logo.svg'
-            width={32}
-            height={32}
+            src='/logo.svg'
+            width={36}
+            height={36}
             className='mr-2'
             alt='logo'
           />

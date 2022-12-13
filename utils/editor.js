@@ -55,6 +55,13 @@ import { Transforms, Editor, Text, Element as SlateElement } from 'slate'
 //   },
 // }
 
+export const editorInitialValue = [
+  {
+    type: 'paragraph',
+    children: [{ text: '' }],
+  },
+]
+
 export const LIST_TYPES = ['numbered-list', 'bulleted-list']
 export const GRID_TYPES = ['two-block', 'three-block']
 export const TEXT_ALIGN_TYPES = ['left', 'center', 'right', 'justify']
