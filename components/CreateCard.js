@@ -10,7 +10,7 @@ const CreateCard = () => {
     resumeLocalStore.add({
       id: String(id),
       updatedAt: new Date().toLocaleString(),
-      title: 'Untitle',
+      title: 'Untitled',
       content: null,
     })
 

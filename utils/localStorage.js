@@ -16,7 +16,7 @@ export const createListLocalStore = key => {
 
   const update = updateItem => {
     const state = all().map(item =>
-      item.id === updateItem.id ? updateItem : item
+      item.id === updateItem.id ? { ...item, ...updateItem } : item
     )
 
     localStorage.setItem(key, JSON.stringify(state))

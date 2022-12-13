@@ -15,9 +15,13 @@ const Edit = () => {
     setDoc(resumeLocalStore.get(String(id)))
   }, [id])
 
+  const handleTitleSubmit = title => {
+    resumeLocalStore.update({ id, title })
+  }
+
   return (
     <Layout title='Resume Builder' showNav={false}>
-      <EditorNav title={doc && doc.title} />
+      <EditorNav title={doc && doc.title} onTitleSubmit={handleTitleSubmit} />
       {doc ? (
         <div className='section my-8'>
           <div className='grid grid-cols-7 gap-7 w-full'>
