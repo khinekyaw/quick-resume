@@ -22,7 +22,12 @@ export const createListLocalStore = key => {
     localStorage.setItem(key, JSON.stringify(state))
   }
 
-  return { all, get, add, update }
+  const _delete = id => {
+    const state = all().filter(item => item.id !== id)
+    localStorage.setItem(key, JSON.stringify(state))
+  }
+
+  return { all, get, add, update, _delete }
 }
 
 export const resumeLocalStore = createListLocalStore('resumes')
