@@ -1,2 +1,3 @@
-## Peach UI
-Tailwindcss UI library
+## Quick Resume
+
+Quick and easy resume editor for everyone.
