@@ -1,5 +1,6 @@
 import Image from 'next/image'
 import { useRouter } from 'next/router'
+
 import { resumeLocalStore } from '../utils/localStorage'
 
 const CreateCard = () => {
@@ -13,8 +14,6 @@ const CreateCard = () => {
       title: 'Untitled',
       content: null,
     })
-
-    // Redirect
     router.push(`resume/${id}`)
   }
 

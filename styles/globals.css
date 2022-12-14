@@ -144,5 +144,5 @@ body {
 }
 
 .header {
-    @apply bg-white opacity-90 backdrop-blur-lg fixed w-full z-50;
+    @apply bg-white opacity-95 backdrop-blur-lg fixed w-full z-50;
 }

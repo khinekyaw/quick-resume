@@ -1,7 +1,7 @@
 import Image from 'next/image'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
-import { useEffect, useRef, useState } from 'react'
+import { useEffect, useRef } from 'react'
 import { TbArrowLeft, TbMenu2, TbPencil } from 'react-icons/tb'
 
 const EditorNav = ({ title, onTitleSubmit }) => {
@@ -27,7 +27,7 @@ const EditorNav = ({ title, onTitleSubmit }) => {
           >
             <TbArrowLeft />
           </button>
-          <Link href='/' className='flex items-center hover:opacity-75'>
+          <Link href='/' className='flex items-center hover:opacity-80'>
             <Image
               src='/logo.svg'
               width={36}
@@ -38,7 +38,6 @@ const EditorNav = ({ title, onTitleSubmit }) => {
           </Link>
         </div>
         <form className='relative group' onSubmit={handleSubmit}>
-          {/* <h2 className='text-gray-800 text-lg'>{title}</h2> */}
           <input
             ref={inputRef}
             onBlur={() => onTitleSubmit(inputRef.current.value)}
