@@ -1,6 +1,6 @@
+import React from 'react'
 import dynamic from 'next/dynamic'
-import React, { useCallback } from 'react'
-import { Editable, useSlate } from 'slate-react'
+import { Editable } from 'slate-react'
 import isHotkey from 'is-hotkey'
 
 import { toggleMark } from '../utils/editor'
@@ -14,11 +14,7 @@ const HOTKEYS = {
   'mod+`': 'code',
 }
 
-const ResumeEditor = () => {
-  // const renderElement = useCallback(props => <Element {...props} />, [])
-  // const renderLeaf = useCallback(props => <Leaf {...props} />, [])
-  const editor = useSlate()
-
+const ResumeEditor = ({ editor }) => {
   const handleKeyDown = event => {
     for (const hotkey in HOTKEYS) {
       if (isHotkey(hotkey, event)) {
@@ -29,18 +25,7 @@ const ResumeEditor = () => {
     }
   }
 
-  // const handleOnChange = value => {
-  //   const isAstChange = editor.operations.some(
-  //     op => 'set_selection' !== op.type
-  //   )
-  //   if (isAstChange) {
-  //     onChange(value)
-  //   }
-  // }
-
   return (
-    // <Slate editor={editor} value={initialValue} onChange={handleOnChange}>
-    //   <EditorToolBar />
     <Editable
       autoFocus
       renderElement={Element}
@@ -48,7 +33,6 @@ const ResumeEditor = () => {
       onKeyDown={handleKeyDown}
       className='resume-editor h-[800px]'
     />
-    // </Slate>
   )
 }
 
