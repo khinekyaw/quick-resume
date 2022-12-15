@@ -3,6 +3,8 @@
 export const createListLocalStore = key => {
   const all = () => JSON.parse(localStorage.getItem(key)) || []
 
+  const set = data => localStorage.setItem(key, JSON.stringify(data))
+
   const get = id => {
     return all().find(item => {
       return item.id === id
@@ -27,7 +29,7 @@ export const createListLocalStore = key => {
     localStorage.setItem(key, JSON.stringify(state))
   }
 
-  return { all, get, add, update, _delete }
+  return { all, set, get, add, update, _delete }
 }
 
 export const resumeLocalStore = createListLocalStore('resumes')

@@ -1,28 +1,30 @@
-import { useEffect, useState } from 'react'
-import CreateCard from '../components/CreateCard'
+import { useEffect } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
+
 import Layout from '../components/Layout'
+import CreateCard from '../components/CreateCard'
 import PreviewCard from '../components/PreviewCard'
 import { resumeLocalStore } from '../utils/localStorage'
+import { deleteResume, setResumes, updateResume } from '../store/resumeSlice'
 
 export default function Home() {
-  const [resumes, setResumes] = useState([])
+  const resumes = useSelector(state => state.resumes)
+  const dispatch = useDispatch()
 
   useEffect(() => {
-    setResumes(resumeLocalStore.all())
+    dispatch(setResumes(resumeLocalStore.all()))
+    return () => dispatch(setResumes([]))
   }, [])
 
   const handleDelete = resume => () => {
     const confirm = window.confirm(
       `Are you sure you want to delete ${resume.title}`
     )
-    if (!confirm) return
-    resumeLocalStore._delete(resume.id)
-    setResumes(resumeLocalStore.all())
+    if (confirm) dispatch(deleteResume(resume.id))
   }
 
   const handleTitleSubmit = resume => title => {
-    resumeLocalStore.update({ id: resume.id, title })
-    setResumes(resumeLocalStore.all())
+    dispatch(updateResume({ id: resume.id, title }))
   }
 
   return (
