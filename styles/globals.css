@@ -146,3 +146,11 @@ body {
 .header {
     @apply bg-white opacity-95 backdrop-blur-lg fixed w-full z-50;
 }
+
+.two-block {
+    @apply bg-gray-200 grid grid-cols-2;
+}
+
+.block-child {
+    @apply border;
+}

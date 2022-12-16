@@ -1,7 +1,7 @@
 import React from 'react'
 import { useSlate } from 'slate-react'
-
 import cn from 'clsx'
+
 import { isMarkActive, toggleMark } from '../../utils/editor'
 
 const MarkButton = ({

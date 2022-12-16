@@ -1,15 +1,18 @@
+import s from './style.module.css'
+
 const Element = ({ attributes, children, element }) => {
   const style = { textAlign: element.align }
+
   switch (element.type) {
     case 'h1':
       return (
-        <h1 style={style} {...attributes}>
+        <h1 style={style} className={s.headingOne} {...attributes}>
           {children}
         </h1>
       )
     case 'h2':
       return (
-        <h2 style={style} {...attributes}>
+        <h2 style={style} className={s.headingTwo} {...attributes}>
           {children}
         </h2>
       )
@@ -33,14 +36,12 @@ const Element = ({ attributes, children, element }) => {
       )
     case 'two-block':
       return (
-        <div className='bg-slate-100 grid grid-cols-2 gap-2' {...attributes}>
+        <div className='two-block' {...attributes}>
           {children}
         </div>
       )
-    case 'grid-child':
-      return (
-        <div className='col-span-1 border border-indigo-400'>{children}</div>
-      )
+    case 'block-child':
+      return <div className='block-child'>{children}</div>
     default:
       return (
         <p style={style} {...attributes}>

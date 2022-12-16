@@ -6,7 +6,7 @@ import {
   isBlockActive,
   TEXT_ALIGN_TYPES,
   toggleBlock,
-} from '../../utils/editor'
+} from '../../../utils/editor'
 
 const BlockButton = ({
   format,

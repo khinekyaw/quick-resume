@@ -1,0 +1,8 @@
+
+.headingOne {
+    @apply font-medium text-5xl;
+}
+
+.headingTwo {
+    @apply font-medium text-3xl;
+}
