@@ -6,3 +6,11 @@
 .headingTwo {
     @apply font-medium text-3xl;
 }
+
+.twoBlock {
+    @apply grid grid-cols-2 gap-2;
+}
+
+.blockChild {
+    @apply p-2 border rounded-md;
+}

@@ -1,4 +1,4 @@
-import s from './style.module.css'
+import s from './Element.module.css'
 
 const Element = ({ attributes, children, element }) => {
   const style = { textAlign: element.align }
@@ -36,12 +36,12 @@ const Element = ({ attributes, children, element }) => {
       )
     case 'two-block':
       return (
-        <div className='two-block' {...attributes}>
+        <div className={s.twoBlock} {...attributes}>
           {children}
         </div>
       )
     case 'block-child':
-      return <div className='block-child'>{children}</div>
+      return <div className={s.blockChild}>{children}</div>
     default:
       return (
         <p style={style} {...attributes}>

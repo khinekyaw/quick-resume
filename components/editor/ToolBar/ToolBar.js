@@ -1,19 +1,27 @@
 import React from 'react'
-import {
-  TbBold,
-  TbItalic,
-  TbCode,
-  TbLink,
-  TbList,
-  TbMenu,
-} from 'react-icons/tb'
-import BlockButton from './BlockButton'
+import { TbBold, TbItalic, TbCode, TbLink, TbList } from 'react-icons/tb'
+import { CiGrid2V } from 'react-icons/ci'
 
-import MarkButton from './MarkButton'
+import BlockButton from '../BlockButton/BlockButton'
+import MarkButton from '../MarkButton/MarkButton'
 
-const EditorToolBar = () => {
+const ThreeBlock = () => (
+  <svg
+    width='25'
+    height='18'
+    viewBox='0 0 25 18'
+    fill='none'
+    xmlns='http://www.w3.org/2000/svg'
+  >
+    <rect x='0.5' y='0.5' width='6' height='17' rx='1.5' stroke='black' />
+    <rect x='9.5' y='0.5' width='6' height='17' rx='1.5' stroke='black' />
+    <rect x='18.5' y='0.5' width='6' height='17' rx='1.5' stroke='black' />
+  </svg>
+)
+
+const ToolBar = () => {
   return (
-    <div className='box p-2 mb-2 flex border'>
+    <div className='bg-white p-2 mb-2 flex border rounded-md'>
       <BlockButton format='h1' icon={<p className='text-sm'>H1</p>} />
       <BlockButton format='h2' icon={<p className='text-sm'>H2</p>} />
       <BlockButton format='h3' icon={<p className='text-sm'>H3</p>} />
@@ -25,9 +33,10 @@ const EditorToolBar = () => {
       <BlockButton format='link' icon={<TbLink />} />
       <BlockButton format='bulleted-list' icon={<TbList />} />
       <div className='border-r mx-1'></div>
-      <BlockButton format='two-block' icon={<TbMenu />} />
+      <BlockButton format='two-block' icon={<CiGrid2V />} />
+      <BlockButton format='three-block' icon={<ThreeBlock />} />
     </div>
   )
 }
 
-export default EditorToolBar
+export default ToolBar

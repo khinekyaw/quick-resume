@@ -1,12 +1,8 @@
 import React from 'react'
 import { useSlate } from 'slate-react'
-
 import cn from 'clsx'
-import {
-  isBlockActive,
-  TEXT_ALIGN_TYPES,
-  toggleBlock,
-} from '../../../utils/editor'
+
+import CustomEditor from '../../../utils/editor'
 
 const BlockButton = ({
   format,
@@ -23,15 +19,11 @@ const BlockButton = ({
       className={cn(
         className,
         'icon-checkbox',
-        isBlockActive(
-          editor,
-          format,
-          TEXT_ALIGN_TYPES.includes(format) ? 'align' : 'type'
-        ) && 'active'
+        CustomEditor.isBlockActive(editor, format) && 'active'
       )}
       onMouseDown={event => {
         event.preventDefault()
-        toggleBlock(editor, format)
+        CustomEditor.toggleBlock(editor, format)
       }}
       {...Props}
     >

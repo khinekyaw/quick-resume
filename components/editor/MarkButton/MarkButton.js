@@ -2,7 +2,7 @@ import React from 'react'
 import { useSlate } from 'slate-react'
 import cn from 'clsx'
 
-import { isMarkActive, toggleMark } from '../../utils/editor'
+import CustomEditor from '../../../utils/editor'
 
 const MarkButton = ({
   format,
@@ -19,11 +19,11 @@ const MarkButton = ({
       className={cn(
         className,
         'icon-checkbox',
-        isMarkActive(editor, format) && 'active'
+        CustomEditor.isMarkActive(editor, format) && 'active'
       )}
       onMouseDown={event => {
         event.preventDefault()
-        toggleMark(editor, format)
+        CustomEditor.toggleMark(editor, format)
       }}
       {...Props}
     >
