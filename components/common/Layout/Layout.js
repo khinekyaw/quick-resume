@@ -1,7 +1,7 @@
 import Head from 'next/head'
 import React, { Fragment } from 'react'
-import Footer from './Footer'
-import Header from './Header'
+import Footer from '../Footer/Footer'
+import Header from '../Header'
 
 const Layout = ({ title, children, showNav = true }) => {
   return (

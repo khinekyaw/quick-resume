@@ -5,9 +5,9 @@ import { TbDotsVertical, TbPencil, TbTrash } from 'react-icons/tb'
 import { useMemo, useState } from 'react'
 import { Editable, Slate, withReact } from 'slate-react'
 import { createEditor } from 'slate'
-import Element from './editor/Element'
-import Leaf from './editor/Leaf'
-import { editorInitialValue } from '../utils/editor'
+import Element from '../../editor/Element'
+import Leaf from '../../editor/Leaf'
+import { editorInitialValue } from '../../../utils/editor'
 
 const OptionDropdown = ({ onDelete, onRename }) => (
   <Menu as='div' className='relative'>
@@ -85,12 +85,12 @@ const PreviewCard = ({ data, onDelete, onSubmit }) => {
             className='w-[500px] min-h-[800px] scale-[45%] origin-top bg-white 
           p-6 absolute left-1/2 -translate-x-1/2'
           >
-            <Slate
+            {/* <Slate
               editor={editor}
               value={content ? content : editorInitialValue}
             >
               <Editable renderElement={Element} renderLeaf={Leaf} readOnly />
-            </Slate>
+            </Slate> */}
           </div>
         </div>
       </Link>

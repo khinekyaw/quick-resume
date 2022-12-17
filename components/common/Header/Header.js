@@ -3,7 +3,7 @@ import Link from 'next/link'
 import { useRouter } from 'next/router'
 import { TbMenu2 } from 'react-icons/tb'
 
-import { resumeLocalStore } from '../utils/localStorage'
+import { resumeLocalStore } from '../../../utils/localStorage'
 
 const Header = () => {
   const router = useRouter()

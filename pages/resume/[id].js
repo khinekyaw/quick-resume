@@ -5,11 +5,6 @@ import { withHistory } from 'slate-history'
 import { Slate, withReact } from 'slate-react'
 import { useDispatch, useSelector } from 'react-redux'
 
-import Layout from '../../components/Layout'
-import ResumePreview from '../../components/ResumePreview'
-import ResumeEditor from '../../components/ResumeEditor'
-import EditorToolBar from '../../components/editor/EditorToolBar'
-import EditorNav from '../../components/editor/EditorNav'
 import { resumeLocalStore } from '../../utils/localStorage'
 import { editorInitialValue } from '../../utils/editor'
 import {
@@ -17,6 +12,9 @@ import {
   updateCurrentResumeContent,
   updateCurrentResumeTitle,
 } from '../../store/editorSlice'
+import ResumePreview from '../../components/resume/ResumePreview'
+import EditorNav from '../../components/editor/EditorNav'
+import Layout from '../../components/common/Layout/Layout'
 
 const Edit = () => {
   const currentResume = useSelector(state => state.editor.currentResume)
@@ -56,7 +54,7 @@ const Edit = () => {
         <div className='section my-8'>
           <div className='grid grid-cols-7 gap-7 w-full'>
             <div className='col-span-5'>
-              <Slate
+              {/* <Slate
                 editor={editor}
                 value={
                   currentResume.content
@@ -67,7 +65,7 @@ const Edit = () => {
               >
                 <EditorToolBar />
                 <ResumeEditor editor={editor} />
-              </Slate>
+              </Slate> */}
             </div>
             <div className='col-span-2'>
               <h2 className='font-bold text-gray-700 mb-4'>Preview</h2>
