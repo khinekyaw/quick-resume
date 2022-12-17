@@ -17,8 +17,6 @@ const Editable = ({ editor }) => {
     }
   }
 
-  console.log('Editable Render')
-
   return (
     <SlateEditable
       renderLeaf={Leaf}

@@ -18,7 +18,7 @@ const Element = ({ attributes, children, element }) => {
       )
     case 'h3':
       return (
-        <h3 style={style} {...attributes}>
+        <h3 style={style} className={s.headingThree} {...attributes}>
           {children}
         </h3>
       )

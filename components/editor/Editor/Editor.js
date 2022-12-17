@@ -6,23 +6,21 @@ import { withHistory } from 'slate-history'
 
 import Editable from '../Editable/Editable'
 import ToolBar from '../ToolBar/ToolBar'
+import { editorDefaultValue } from '../../../utils/editor'
 
-const SlateEditor = () => {
+const Editor = ({ value, onChange }) => {
   const editor = useMemo(() => withHistory(withReact(createEditor())), [])
 
   return (
-    <Slate editor={editor} value={defaultValue}>
+    <Slate
+      editor={editor}
+      value={value ? value : editorDefaultValue}
+      onChange={value => onChange(editor, value)}
+    >
       <ToolBar />
       <Editable editor={editor} />
     </Slate>
   )
 }
 
-const defaultValue = [
-  {
-    type: 'paragraph',
-    children: [{ text: 'default' }],
-  },
-]
-
-export default dynamic(() => Promise.resolve(SlateEditor), { ssr: false })
+export default dynamic(() => Promise.resolve(Editor), { ssr: false })

@@ -7,6 +7,10 @@
     @apply font-medium text-3xl;
 }
 
+.headingThree {
+    @apply font-medium text-xl;
+}
+
 .twoBlock {
     @apply grid grid-cols-2 gap-2;
 }

@@ -1,6 +1,7 @@
 import Image from 'next/image'
 import { useRouter } from 'next/router'
 
+import { editorDefaultValue } from '../../../utils/editor'
 import { resumeLocalStore } from '../../../utils/localStorage'
 
 const CreateCard = () => {
@@ -12,7 +13,7 @@ const CreateCard = () => {
       id: String(id),
       updatedAt: new Date().toLocaleString(),
       title: 'Untitled',
-      content: null,
+      content: editorDefaultValue,
     })
     router.push(`resume/${id}`)
   }
