@@ -1,12 +1,24 @@
 import React from 'react'
-import { TbBold, TbItalic, TbCode, TbLink, TbList } from 'react-icons/tb'
+import { useSlate } from 'slate-react'
+import {
+  TbBold,
+  TbItalic,
+  TbCode,
+  TbLink,
+  TbList,
+  TbUnlink,
+} from 'react-icons/tb'
 import { CiGrid2V } from 'react-icons/ci'
 
 import BlockButton from '../BlockButton/BlockButton'
 import MarkButton from '../MarkButton/MarkButton'
 import ThreeBlock from '../../icons/ThreeBlock'
+import ToolButton from '../ToolButton/ToolButton'
+import CustomEditor, { insertLink } from '../../../utils/editor'
 
 const ToolBar = () => {
+  const editor = useSlate()
+
   return (
     <div className='bg-white p-2 mb-2 flex border rounded-md'>
       <BlockButton format='h1' icon={<p className='text-sm'>H1</p>} />
@@ -17,7 +29,15 @@ const ToolBar = () => {
       <MarkButton format='italic' icon={<TbItalic />} />
       <MarkButton format='code' icon={<TbCode />} />
       <div className='border-r mx-1'></div>
-      <BlockButton format='link' icon={<TbLink />} />
+      <ToolButton
+        icon={<TbLink />}
+        activeIcon={<TbUnlink />}
+        active={CustomEditor.isLinkActive(editor)}
+        onMouseDown={e => {
+          e.preventDefault()
+          insertLink(editor)
+        }}
+      />
       <BlockButton format='bulleted-list' icon={<TbList />} />
       <div className='border-r mx-1'></div>
       <BlockButton format='two-block' icon={<CiGrid2V />} />

@@ -3,10 +3,10 @@ import cn from 'clsx'
 
 import s from './ToolButton.module.css'
 
-const ToolButton = ({ icon, active, className, ...rest }) => {
+const ToolButton = ({ icon, activeIcon, active, className, ...rest }) => {
   return (
     <button className={cn(className, s.root, active && s.active)} {...rest}>
-      {icon}
+      {activeIcon && active ? activeIcon : icon}
     </button>
   )
 }
