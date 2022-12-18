@@ -18,3 +18,7 @@
 .blockChild {
     @apply p-2 border rounded-md;
 }
+
+.link {
+    @apply text-blue-500;
+}

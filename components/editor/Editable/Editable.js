@@ -1,14 +1,33 @@
 import React from 'react'
 import dynamic from 'next/dynamic'
 import { Editable as SlateEditable } from 'slate-react'
-import isHotkey from 'is-hotkey'
+import isHotkey, { isKeyHotkey } from 'is-hotkey'
 
 import Leaf from '../Leaf'
 import Element from '../Element'
-import { EXECUTE_COMMAND } from '../../../utils/editor'
+import CustomEditor, { EXECUTE_COMMAND } from '../../../utils/editor'
+import { Range, Transforms } from 'slate'
 
 const Editable = ({ editor }) => {
   const handleKeyDown = event => {
+    const { selection } = editor
+    const isLinkActive = CustomEditor.isLinkActive(editor)
+
+    // For link's cursor movement
+    if (selection && isLinkActive && Range.isCollapsed(selection)) {
+      const { nativeEvent } = event
+      if (isKeyHotkey('left', nativeEvent)) {
+        event.preventDefault()
+        Transforms.move(editor, { unit: 'offset', reverse: true })
+        return
+      }
+      if (isKeyHotkey('right', nativeEvent)) {
+        event.preventDefault()
+        Transforms.move(editor, { unit: 'offset' })
+        return
+      }
+    }
+
     for (const hotkey in EXECUTE_COMMAND) {
       if (isHotkey(hotkey, event)) {
         event.preventDefault()

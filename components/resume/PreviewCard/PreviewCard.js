@@ -1,13 +1,9 @@
 import Link from 'next/link'
 import { Menu } from '@headlessui/react'
-import { TbDotsVertical, TbPencil, TbTrash } from 'react-icons/tb'
-
 import { useMemo, useState } from 'react'
-import { Editable, Slate, withReact } from 'slate-react'
+import { withReact } from 'slate-react'
 import { createEditor } from 'slate'
-import Element from '../../editor/Element'
-import Leaf from '../../editor/Leaf'
-import { editorInitialValue } from '../../../utils/editor'
+import { TbDotsVertical, TbPencil, TbTrash } from 'react-icons/tb'
 
 const OptionDropdown = ({ onDelete, onRename }) => (
   <Menu as='div' className='relative'>

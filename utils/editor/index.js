@@ -1,4 +1,4 @@
-import { Editor, Transforms } from 'slate'
+import { Editor, Element as SlateElement, Range, Transforms } from 'slate'
 
 const CustomEditor = {
   isMarkActive(editor, mark) {
@@ -32,6 +32,46 @@ const CustomEditor = {
     )
   },
 
+  unwrapLink(editor) {
+    console.log('unwrap')
+    Transforms.unwrapNodes(editor, {
+      match: n =>
+        !Editor.isEditor(n) && SlateElement.isElement(n) && n.type === 'link',
+    })
+  },
+
+  createLinkNode(url, text) {
+    return {
+      type: 'link',
+      url,
+      children: text ? [{ text }] : [],
+    }
+  },
+
+  isLinkActive(editor) {
+    const [link] = Editor.nodes(editor, {
+      match: n =>
+        !Editor.isEditor(n) && SlateElement.isElement(n) && n.type === 'link',
+    })
+    return Boolean(link)
+  },
+
+  wrapLink(editor, url) {
+    const { selection } = editor
+
+    const isCollapsed = selection && Range.isCollapsed(selection)
+
+    const link = this.createLinkNode(url, isCollapsed && url)
+
+    if (isCollapsed) {
+      Transforms.insertNodes(editor, link)
+      Transforms.move(editor, { unit: 'offset' })
+    } else {
+      Transforms.wrapNodes(editor, link, { split: true })
+      Transforms.collapse(editor, { edge: 'end' })
+    }
+  },
+
   createGrid(editor) {
     const twoBlock = {
       type: 'two-block',
@@ -61,12 +101,15 @@ const CustomEditor = {
   },
 }
 
-export const editorDefaultValue = [
-  {
-    type: 'paragraph',
-    children: [{ text: 'default' }],
-  },
-]
+export const insertLink = editor => {
+  const isActive = CustomEditor.isLinkActive(editor)
+  if (isActive) return CustomEditor.unwrapLink(editor)
+
+  const url = window.prompt('Enter the URL of the link:')
+  if (url) {
+    CustomEditor.wrapLink(editor, url)
+  }
+}
 
 export const EXECUTE_COMMAND = {
   'mod+b': editor => CustomEditor.toggleMark(editor, 'bold'),
@@ -75,7 +118,15 @@ export const EXECUTE_COMMAND = {
   'mod+`': editor => CustomEditor.toggleMark(editor, 'code'),
   'mod+h': editor => CustomEditor.toggleBlock(editor, 'h1'),
   'mod+j': editor => CustomEditor.toggleBlock(editor, 'h2'),
-  'mod+d': editor => CustomEditor.createGrid(editor),
+  'mod+d': CustomEditor.createGrid,
+  'mod+k': insertLink,
 }
+
+export const editorDefaultValue = [
+  {
+    type: 'paragraph',
+    children: [{ text: 'default' }],
+  },
+]
 
 export default CustomEditor

@@ -41,7 +41,17 @@ const Element = ({ attributes, children, element }) => {
         </div>
       )
     case 'block-child':
-      return <div className={s.blockChild}>{children}</div>
+      return (
+        <div className={s.blockChild} {...attributes}>
+          {children}
+        </div>
+      )
+    case 'link':
+      return (
+        <a href={element.url} className={s.link} {...attributes}>
+          {children}
+        </a>
+      )
     default:
       return (
         <p style={style} {...attributes}>

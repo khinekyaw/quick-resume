@@ -2,10 +2,10 @@ import { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 
 import Layout from '../components/common/Layout'
-import { resumeLocalStore } from '../utils/localStorage'
-import { deleteResume, setResumes, updateResume } from '../store/resumeSlice'
 import CreateCard from '../components/resume/CreateCard/CreateCard'
 import PreviewCard from '../components/resume/PreviewCard/PreviewCard'
+import { deleteResume, setResumes, updateResume } from '../store/resumeSlice'
+import { resumeLocalStore } from '../utils/localStorage'
 
 export default function Home() {
   const resumes = useSelector(state => state.resumes)
