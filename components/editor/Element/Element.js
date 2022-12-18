@@ -1,3 +1,6 @@
+import { useSelected } from 'slate-react'
+import cn from 'clsx'
+
 import s from './Element.module.css'
 
 // Put this at the start and end of an inline component to work around this Chromium bug:
@@ -8,7 +11,23 @@ const InlineChromiumBugfix = () => (
   </span>
 )
 
-const Element = ({ attributes, children, element }) => {
+const Link = ({ attributes, children, element }) => {
+  const selected = useSelected()
+  return (
+    <a
+      {...attributes}
+      href={element.url}
+      className={cn(s.link, selected && 'underline')}
+    >
+      <InlineChromiumBugfix />
+      {children}
+      <InlineChromiumBugfix />
+    </a>
+  )
+}
+
+const Element = props => {
+  const { attributes, children, element } = props
   const style = { textAlign: element.align }
 
   switch (element.type) {
@@ -55,13 +74,7 @@ const Element = ({ attributes, children, element }) => {
         </div>
       )
     case 'link':
-      return (
-        <a href={element.url} className={s.link} {...attributes}>
-          <InlineChromiumBugfix />
-          {children}
-          <InlineChromiumBugfix />
-        </a>
-      )
+      return <Link {...props} />
     default:
       return (
         <p style={style} {...attributes}>
