@@ -1,5 +1,13 @@
 import s from './Element.module.css'
 
+// Put this at the start and end of an inline component to work around this Chromium bug:
+// https://bugs.chromium.org/p/chromium/issues/detail?id=1249405
+const InlineChromiumBugfix = () => (
+  <span contentEditable={false} className={s.inlineChromiumBugfix}>
+    ${String.fromCodePoint(160) /* Non-breaking space */}
+  </span>
+)
+
 const Element = ({ attributes, children, element }) => {
   const style = { textAlign: element.align }
 
@@ -49,7 +57,9 @@ const Element = ({ attributes, children, element }) => {
     case 'link':
       return (
         <a href={element.url} className={s.link} {...attributes}>
+          <InlineChromiumBugfix />
           {children}
+          <InlineChromiumBugfix />
         </a>
       )
     default:

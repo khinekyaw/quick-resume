@@ -1,12 +1,12 @@
 import React from 'react'
 import dynamic from 'next/dynamic'
 import { Editable as SlateEditable } from 'slate-react'
+import { Range, Transforms } from 'slate'
 import isHotkey, { isKeyHotkey } from 'is-hotkey'
 
 import Leaf from '../Leaf'
 import Element from '../Element'
 import CustomEditor, { EXECUTE_COMMAND } from '../../../utils/editor'
-import { Range, Transforms } from 'slate'
 
 const Editable = ({ editor }) => {
   const handleKeyDown = event => {

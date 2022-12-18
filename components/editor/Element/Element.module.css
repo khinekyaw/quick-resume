@@ -22,3 +22,7 @@
 .link {
     @apply text-blue-500;
 }
+
+.inlineChromiumBugfix {
+    font-size: 0;
+}
