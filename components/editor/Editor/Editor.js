@@ -6,10 +6,11 @@ import { withHistory } from 'slate-history'
 
 import Editable from '../Editable/Editable'
 import ToolBar from '../ToolBar/ToolBar'
+import { withBulletList } from '../../../lib/editor/list'
 import { editorDefaultValue } from '../../../utils/editor'
 
 const Editor = ({ value, onChange }) => {
-  const editor = useMemo(() => withHistory(withReact(createEditor())), [])
+  const editor = useMemo(() => withBulletList(withHistory(withReact(createEditor()))), [])
 
   return (
     <Slate

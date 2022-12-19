@@ -2,8 +2,11 @@ import React from 'react'
 import { TbBold, TbItalic, TbCode, TbLink, TbList } from 'react-icons/tb'
 import { CiGrid2V } from 'react-icons/ci'
 
+import Button from '../Button'
 import BlockButton from '../BlockButton/BlockButton'
 import MarkButton from '../MarkButton/MarkButton'
+import ListEditor from '../../../lib/editor/list'
+import { useSlate } from 'slate-react'
 
 const ThreeBlock = () => (
   <svg
@@ -20,6 +23,8 @@ const ThreeBlock = () => (
 )
 
 const ToolBar = () => {
+  const editor = useSlate()
+
   return (
     <div className='bg-white p-2 mb-2 flex border rounded-md'>
       <BlockButton format='h1' icon={<p className='text-sm'>H1</p>} />
@@ -31,7 +36,7 @@ const ToolBar = () => {
       <MarkButton format='code' icon={<TbCode />} />
       <div className='border-r mx-1'></div>
       <BlockButton format='link' icon={<TbLink />} />
-      <BlockButton format='bulleted-list' icon={<TbList />} />
+      <Button onClick={() => ListEditor.toggleBulletList(editor)} icon={<TbList />} active={ListEditor.isListBlock(editor)}/>
       <div className='border-r mx-1'></div>
       <BlockButton format='two-block' icon={<CiGrid2V />} />
       <BlockButton format='three-block' icon={<ThreeBlock />} />

@@ -22,9 +22,9 @@ const Element = ({ attributes, children, element }) => {
           {children}
         </h3>
       )
-    case 'bulleted-list':
+    case 'bullet-list':
       return (
-        <ul style={style} {...attributes}>
+        <ul className='list-disc list-inside' style={style} {...attributes}>
           {children}
         </ul>
       )
