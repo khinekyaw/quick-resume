@@ -28,13 +28,8 @@ const Edit = () => {
     dispatch(updateCurrentResumeTitle(title))
   }
 
-  const handleOnChange = (editor, value) => {
-    const isAstChange = editor.operations.some(
-      op => 'set_selection' !== op.type
-    )
-    if (isAstChange) {
-      dispatch(updateCurrentResumeContent(value))
-    }
+  const handleOnChange = (value) => {
+    dispatch(updateCurrentResumeContent(value))
   }
 
   return (
