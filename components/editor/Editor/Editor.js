@@ -6,9 +6,9 @@ import { withHistory } from 'slate-history'
 
 import Editable from '../Editable/Editable'
 import ToolBar from '../ToolBar/ToolBar'
-import { withBulletList } from '../../../lib/editor/list'
-import withLinks from '../../../utils/editor/plugins/withLinks'
 import { editorDefaultValue } from '../../../utils/editor'
+import { withBulletList } from '../../../lib/editor/list'
+import { withLinks } from '../../../lib/editor/link'
 
 const Editor = ({ value, onChange }) => {
   const editor = useMemo(

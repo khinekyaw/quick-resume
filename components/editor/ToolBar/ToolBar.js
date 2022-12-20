@@ -10,13 +10,21 @@ import {
 } from 'react-icons/tb'
 import { CiGrid2V } from 'react-icons/ci'
 
-import Button from '../Button'
 import BlockButton from '../BlockButton/BlockButton'
 import MarkButton from '../MarkButton/MarkButton'
-import ThreeBlock from '../../icons/ThreeBlock'
 import ToolButton from '../ToolButton/ToolButton'
-import CustomEditor, { insertLink } from '../../../utils/editor'
+import ThreeBlock from '../../icons/ThreeBlock'
 import ListEditor from '../../../lib/editor/list'
+import LinkEditor from '../../../lib/editor/link'
+
+const toggleLink = editor => {
+  if (LinkEditor.isLinkActive(editor)) return LinkEditor.unwrapLink(editor)
+
+  const url = window.prompt('Enter the URL of the link:')
+  if (url) {
+    LinkEditor.wrapLink(editor, url)
+  }
+}
 
 const ToolBar = () => {
   const editor = useSlate()
@@ -34,16 +42,17 @@ const ToolBar = () => {
       <ToolButton
         icon={<TbLink />}
         activeIcon={<TbUnlink />}
-        active={CustomEditor.isLinkActive(editor)}
+        active={LinkEditor.isLinkActive(editor)}
         onMouseDown={e => {
           e.preventDefault()
-          insertLink(editor)
+          toggleLink(editor)
         }}
       />
-      <BlockButton format='bulleted-list' icon={<TbList />} />
-      <BlockButton format='link' icon={<TbLink />} />
-      <Button
-        onClick={() => ListEditor.toggleBulletList(editor)}
+      <ToolButton
+        onMouseDown={e => {
+          e.preventDefault()
+          ListEditor.toggleBulletList(editor)
+        }}
         icon={<TbList />}
         active={ListEditor.isListBlock(editor)}
       />
