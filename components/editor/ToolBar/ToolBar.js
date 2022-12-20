@@ -10,11 +10,13 @@ import {
 } from 'react-icons/tb'
 import { CiGrid2V } from 'react-icons/ci'
 
+import Button from '../Button'
 import BlockButton from '../BlockButton/BlockButton'
 import MarkButton from '../MarkButton/MarkButton'
 import ThreeBlock from '../../icons/ThreeBlock'
 import ToolButton from '../ToolButton/ToolButton'
 import CustomEditor, { insertLink } from '../../../utils/editor'
+import ListEditor from '../../../lib/editor/list'
 
 const ToolBar = () => {
   const editor = useSlate()
@@ -39,6 +41,12 @@ const ToolBar = () => {
         }}
       />
       <BlockButton format='bulleted-list' icon={<TbList />} />
+      <BlockButton format='link' icon={<TbLink />} />
+      <Button
+        onClick={() => ListEditor.toggleBulletList(editor)}
+        icon={<TbList />}
+        active={ListEditor.isListBlock(editor)}
+      />
       <div className='border-r mx-1'></div>
       <BlockButton format='two-block' icon={<CiGrid2V />} />
       <BlockButton format='three-block' icon={<ThreeBlock />} />
