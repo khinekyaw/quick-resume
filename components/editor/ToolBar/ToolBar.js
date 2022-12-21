@@ -7,6 +7,9 @@ import {
   TbLink,
   TbList,
   TbUnlink,
+  TbAlignRight,
+  TbAlignLeft,
+  TbAlignCenter,
 } from 'react-icons/tb'
 import { CiGrid2V } from 'react-icons/ci'
 
@@ -16,6 +19,7 @@ import ToolButton from '../ToolButton/ToolButton'
 import ThreeBlock from '../../icons/ThreeBlock'
 import ListEditor from '../../../lib/editor/list'
 import LinkEditor from '../../../lib/editor/link'
+import AlignEditor from '../../../lib/editor/align'
 
 const toggleLink = editor => {
   if (LinkEditor.isLinkActive(editor)) return LinkEditor.unwrapLink(editor)
@@ -59,6 +63,31 @@ const ToolBar = () => {
       <div className='border-r mx-1'></div>
       <BlockButton format='two-block' icon={<CiGrid2V />} />
       <BlockButton format='three-block' icon={<ThreeBlock />} />
+      <div className='border-r mx-1'></div>
+      <ToolButton
+        onMouseDown={e => {
+          e.preventDefault()
+          AlignEditor.toggleAlign(editor, 'left')
+        }}
+        icon={<TbAlignLeft />}
+        active={AlignEditor.isActive(editor, 'left')}
+      />
+      <ToolButton
+        onMouseDown={e => {
+          e.preventDefault()
+          AlignEditor.toggleAlign(editor, 'center')
+        }}
+        icon={<TbAlignCenter />}
+        active={AlignEditor.isActive(editor, 'center')}
+      />
+      <ToolButton
+        onMouseDown={e => {
+          e.preventDefault()
+          AlignEditor.toggleAlign(editor, 'right')
+        }}
+        icon={<TbAlignRight />}
+        active={AlignEditor.isActive(editor, 'right')}
+      />
     </div>
   )
 }
