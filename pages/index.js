@@ -31,7 +31,7 @@ export default function Home() {
     <Layout>
       <div className='section py-10'>
         <div className='grid grid-col-1 sm:grid-cols-2 md:grid-cols-3 w-full gap-6'>
-          {resumes.map(resume => (
+          {[...resumes].reverse().map(resume => (
             <PreviewCard
               key={resume.id}
               data={resume}

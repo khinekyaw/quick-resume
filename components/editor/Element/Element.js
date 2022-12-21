@@ -51,7 +51,7 @@ const Element = props => {
       )
     case 'bullet-list':
       return (
-        <ul className='list-disc list-inside' style={style} {...attributes}>
+        <ul className={s.bulletList} style={style} {...attributes}>
           {children}
         </ul>
       )

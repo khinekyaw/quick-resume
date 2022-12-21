@@ -125,7 +125,7 @@ export const EXECUTE_COMMAND = {
 export const editorDefaultValue = [
   {
     type: 'paragraph',
-    children: [{ text: 'default' }],
+    children: [{ text: '' }],
   },
 ]
 

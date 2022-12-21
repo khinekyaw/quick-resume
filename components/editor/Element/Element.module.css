@@ -1,10 +1,10 @@
 
 .headingOne {
-    @apply font-medium text-5xl;
+    @apply font-medium text-4xl;
 }
 
 .headingTwo {
-    @apply font-medium text-3xl;
+    @apply font-medium text-2xl;
 }
 
 .headingThree {
@@ -21,6 +21,10 @@
 
 .link {
     @apply text-blue-500;
+}
+
+.bulletList {
+    @apply list-disc list-inside;
 }
 
 .inlineChromiumBugfix {

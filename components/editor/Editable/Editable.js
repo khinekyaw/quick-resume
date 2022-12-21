@@ -41,6 +41,7 @@ const Editable = ({ editor }) => {
       renderLeaf={Leaf}
       renderElement={Element}
       autoFocus
+      spellCheck
       onKeyDown={handleKeyDown}
       className='bg-white p-6 rounded-md border min-h-screen'
     />
