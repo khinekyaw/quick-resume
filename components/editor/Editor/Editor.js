@@ -9,10 +9,14 @@ import ToolBar from '../ToolBar/ToolBar'
 import { editorDefaultValue } from '../../../utils/editor'
 import { withBulletList } from '../../../lib/editor/list'
 import { withLinks } from '../../../lib/editor/link'
+import { withBlocks } from '../../../lib/editor/block'
 
 const Editor = ({ value, onChange }) => {
   const editor = useMemo(
-    () => withLinks(withBulletList(withHistory(withReact(createEditor())))),
+    () =>
+      withBlocks(
+        withLinks(withBulletList(withHistory(withReact(createEditor()))))
+      ),
     []
   )
 
