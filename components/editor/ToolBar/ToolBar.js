@@ -20,6 +20,7 @@ import ThreeBlock from '../../icons/ThreeBlock'
 import ListEditor from '../../../lib/editor/list'
 import LinkEditor from '../../../lib/editor/link'
 import AlignEditor from '../../../lib/editor/align'
+import BlockEditor from '../../../lib/editor/block'
 
 const toggleLink = editor => {
   if (LinkEditor.isLinkActive(editor)) return LinkEditor.unwrapLink(editor)
@@ -53,40 +54,48 @@ const ToolBar = () => {
         }}
       />
       <ToolButton
+        icon={<TbList />}
+        active={ListEditor.isListBlock(editor)}
         onMouseDown={e => {
           e.preventDefault()
           ListEditor.toggleBulletList(editor)
         }}
-        icon={<TbList />}
-        active={ListEditor.isListBlock(editor)}
       />
       <div className='border-r mx-1'></div>
-      <BlockButton format='two-block' icon={<CiGrid2V />} />
+
+      <ToolButton
+        icon={<CiGrid2V />}
+        active={BlockEditor.isBlockActive(editor, 'two-block')}
+        onMouseDown={e => {
+          e.preventDefault()
+          BlockEditor.toggle2Block(editor)
+        }}
+      />
       <BlockButton format='three-block' icon={<ThreeBlock />} />
       <div className='border-r mx-1'></div>
       <ToolButton
+        icon={<TbAlignLeft />}
+        active={AlignEditor.isActive(editor, 'left')}
         onMouseDown={e => {
           e.preventDefault()
           AlignEditor.toggleAlign(editor, 'left')
         }}
-        icon={<TbAlignLeft />}
-        active={AlignEditor.isActive(editor, 'left')}
       />
       <ToolButton
+        icon={<TbAlignCenter />}
+        active={AlignEditor.isActive(editor, 'center')}
         onMouseDown={e => {
           e.preventDefault()
           AlignEditor.toggleAlign(editor, 'center')
         }}
-        icon={<TbAlignCenter />}
-        active={AlignEditor.isActive(editor, 'center')}
       />
       <ToolButton
+        icon={<TbAlignRight />}
+        active={AlignEditor.isActive(editor, 'right')}
         onMouseDown={e => {
           e.preventDefault()
           AlignEditor.toggleAlign(editor, 'right')
         }}
-        icon={<TbAlignRight />}
-        active={AlignEditor.isActive(editor, 'right')}
       />
     </div>
   )

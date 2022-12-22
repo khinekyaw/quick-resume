@@ -40,6 +40,9 @@ const EditorNav = ({ title, onTitleSubmit }) => {
         <form className='relative group' onSubmit={handleSubmit}>
           <input
             ref={inputRef}
+            onFocus={() => {
+              inputRef.current.select()
+            }}
             onBlur={() => onTitleSubmit(inputRef.current.value)}
             className='outline-none text-lg text-center font-medium border-b border-transparent focus:border-gray-300'
           />
