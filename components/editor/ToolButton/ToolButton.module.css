@@ -9,3 +9,7 @@
 .root.active {
     @apply bg-indigo-100 text-indigo-600;
 }
+
+.root:disabled {
+    @apply hover:bg-white opacity-40;
+}

@@ -20,7 +20,7 @@ import ThreeBlock from '../../icons/ThreeBlock'
 import ListEditor from '../../../lib/editor/list'
 import LinkEditor from '../../../lib/editor/link'
 import AlignEditor from '../../../lib/editor/align'
-import BlockEditor from '../../../lib/editor/block'
+import BlockEditor, { THREE_BLOCK, TWO_BLOCK } from '../../../lib/editor/block'
 
 const toggleLink = editor => {
   if (LinkEditor.isLinkActive(editor)) return LinkEditor.unwrapLink(editor)
@@ -65,7 +65,8 @@ const ToolBar = () => {
 
       <ToolButton
         icon={<CiGrid2V />}
-        active={BlockEditor.isBlockActive(editor, 'two-block')}
+        active={BlockEditor.isBlockActive(editor, TWO_BLOCK)}
+        disabled={BlockEditor.isBlockActive(editor, THREE_BLOCK)}
         onMouseDown={e => {
           e.preventDefault()
           BlockEditor.toggle2Block(editor)
@@ -73,7 +74,8 @@ const ToolBar = () => {
       />
       <ToolButton
         icon={<ThreeBlock />}
-        active={BlockEditor.isBlockActive(editor, 'three-block')}
+        active={BlockEditor.isBlockActive(editor, THREE_BLOCK)}
+        disabled={BlockEditor.isBlockActive(editor, TWO_BLOCK)}
         onMouseDown={e => {
           e.preventDefault()
           BlockEditor.toggle3Block(editor)
