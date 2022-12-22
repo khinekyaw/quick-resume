@@ -31,10 +31,9 @@ const OptionDropdown = ({ onDelete, onRename }) => (
 )
 
 const PreviewCard = ({ data, onDelete, onSubmit }) => {
-  const { title, updatedAt, content } = data
+  const { title, updatedAt } = data
   const [renmaing, setRenaming] = useState(false)
   const [editTitle, setEditTitle] = useState(title)
-  const editor = useMemo(() => withReact(createEditor()), [])
 
   const onRenameClick = () => {
     setRenaming(true)
@@ -55,7 +54,7 @@ const PreviewCard = ({ data, onDelete, onSubmit }) => {
     <div className='card flex flex-col p-4 w-full aspect-square'>
       <div className='h-18'>
         <div className='flex justify-between'>
-          <form className='font-bold mb-2' onSubmit={handleSubmit}>
+          <form className='font-medium' onSubmit={handleSubmit}>
             {renmaing ? (
               <input
                 value={editTitle}
@@ -65,7 +64,7 @@ const PreviewCard = ({ data, onDelete, onSubmit }) => {
                 autoFocus
               />
             ) : (
-              <h2>{title}</h2>
+              <p>{title}</p>
             )}
           </form>
           <OptionDropdown onDelete={onDelete} onRename={onRenameClick} />
@@ -80,14 +79,7 @@ const PreviewCard = ({ data, onDelete, onSubmit }) => {
           <div
             className='w-[500px] min-h-[800px] scale-[45%] origin-top bg-white 
           p-6 absolute left-1/2 -translate-x-1/2'
-          >
-            {/* <Slate
-              editor={editor}
-              value={content ? content : editorInitialValue}
-            >
-              <Editable renderElement={Element} renderLeaf={Leaf} readOnly />
-            </Slate> */}
-          </div>
+          ></div>
         </div>
       </Link>
     </div>

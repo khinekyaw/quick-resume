@@ -67,6 +67,12 @@ const Element = props => {
           {children}
         </div>
       )
+    case 'three-block':
+      return (
+        <div className={s.threeBlock} {...attributes}>
+          {children}
+        </div>
+      )
     case 'block-child':
       return (
         <div className={s.blockChild} {...attributes}>

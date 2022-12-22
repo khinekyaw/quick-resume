@@ -11,20 +11,30 @@
     @apply font-medium text-xl;
 }
 
-.twoBlock {
-    @apply grid grid-cols-2 gap-2;
-}
-
-.blockChild {
-    @apply p-2 border rounded-md;
-}
-
 .link {
     @apply text-blue-500;
 }
 
 .bulletList {
     @apply list-disc list-inside;
+}
+
+/* blocks */
+.twoBlock,
+.threeBlock {
+    @apply grid gap-2 -mx-2;
+}
+
+.twoBlock {
+    @apply grid-cols-2;
+}
+
+.threeBlock {
+    @apply grid-cols-3;
+}
+
+.blockChild {
+    @apply p-2 border rounded-md;
 }
 
 .inlineChromiumBugfix {

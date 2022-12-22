@@ -43,7 +43,7 @@ const Editable = ({ editor }) => {
       autoFocus
       spellCheck
       onKeyDown={handleKeyDown}
-      className='bg-white p-6 rounded-md border min-h-screen'
+      className='bg-white p-8 rounded-md border min-h-screen'
     />
   )
 }

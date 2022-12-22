@@ -71,7 +71,14 @@ const ToolBar = () => {
           BlockEditor.toggle2Block(editor)
         }}
       />
-      <BlockButton format='three-block' icon={<ThreeBlock />} />
+      <ToolButton
+        icon={<ThreeBlock />}
+        active={BlockEditor.isBlockActive(editor, 'three-block')}
+        onMouseDown={e => {
+          e.preventDefault()
+          BlockEditor.toggle3Block(editor)
+        }}
+      />
       <div className='border-r mx-1'></div>
       <ToolButton
         icon={<TbAlignLeft />}
