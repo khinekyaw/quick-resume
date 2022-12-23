@@ -36,6 +36,9 @@ const Preview = () => {
         renderElement={Element}
         renderLeaf={Leaf}
         className='bg-white p-8'
+        style={{
+          minHeight: '141vw',
+        }}
       />
     </Slate>
   ) : null

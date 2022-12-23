@@ -8,7 +8,7 @@ const Leaf = ({ attributes, children, leaf }) => {
   }
 
   if (leaf.code) {
-    children = <code>{children}</code>
+    children = <code className={s.code}>{children}</code>
   }
 
   if (leaf.italic) {

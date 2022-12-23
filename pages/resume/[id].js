@@ -46,7 +46,8 @@ const Edit = () => {
             </div>
             <div className='col-span-2'>
               <h2 className='font-bold text-gray-700 mb-4'>Preview</h2>
-              <ResumePreview id={id} />
+              {/* <ResumePreview id={id} content={currentResume.content} /> */}
+              <ResumePreview resume={currentResume} />
             </div>
           </div>
         </div>
