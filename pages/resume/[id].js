@@ -28,7 +28,7 @@ const Edit = () => {
     dispatch(updateCurrentResumeTitle(title))
   }
 
-  const handleOnChange = (value) => {
+  const handleOnChange = value => {
     dispatch(updateCurrentResumeContent(value))
   }
 
@@ -46,7 +46,7 @@ const Edit = () => {
             </div>
             <div className='col-span-2'>
               <h2 className='font-bold text-gray-700 mb-4'>Preview</h2>
-              <ResumePreview value={currentResume.content} />
+              <ResumePreview id={id} />
             </div>
           </div>
         </div>
