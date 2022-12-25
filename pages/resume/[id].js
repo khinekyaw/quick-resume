@@ -40,11 +40,11 @@ const Edit = () => {
       />
       {currentResume ? (
         <div className='section my-8'>
-          <div className='grid grid-cols-7 gap-7 w-full'>
-            <div className='col-span-5'>
+          <div className='grid grid-cols-4 gap-7 w-full'>
+            <div className='col-span-3'>
               <Editor value={currentResume.content} onChange={handleOnChange} />
             </div>
-            <div className='col-span-2'>
+            <div className='col-span-1'>
               <h2 className='font-bold text-gray-700 mb-4'>Preview</h2>
               {/* <ResumePreview id={id} content={currentResume.content} /> */}
               <ResumePreview resume={currentResume} />
