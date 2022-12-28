@@ -5,7 +5,7 @@ const Footer = () => {
   return (
     <div className='border-t bg-white'>
       <div className='section py-8'>
-        <div className='grid gap-6 w-full grid-cols-4'>
+        <div className='grid gap-6 w-full grid-cols-2 md:grid-cols-4'>
           <div className='space-y-2'>
             <h5 className='font-simibold text-xl mb-5'>Resumera</h5>
             <p>

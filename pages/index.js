@@ -25,9 +25,9 @@ export default function Home() {
       {/* Hero */}
       <div id='hero' className='bg-white'>
         <div className='section py-12'>
-          <div className='w-full grid gap-4 grid-cols-2'>
+          <div className='w-full grid gap-4 grid-cols-1 md:grid-cols-2'>
             <div className='col-span-1'>
-              <h1 className='text-6xl font-semibold mb-8'>
+              <h1 className='text-5xl md:text-6xl font-semibold mb-8'>
                 Quick and easy online resume builder
               </h1>
               <p className='text-gray-600 text-lg mb-8'>
@@ -42,7 +42,7 @@ export default function Home() {
                 width={256}
                 height={256}
                 src='/hero.svg'
-                className='h-72 w-auto'
+                className='w-4/5 mt-10 md:mt-0 md:h-72 md:w-auto'
                 alt='hero'
               />
             </div>
@@ -55,7 +55,7 @@ export default function Home() {
         <h2 className='text-2xl font-semibold mb-6 border-b-2 border-dashed border-indigo-500'>
           How it works
         </h2>
-        <div className='grid gap-4 grid-cols-3 w-full'>
+        <div className='grid gap-4 grid-cols-1 md:grid-cols-3 w-full'>
           {HIW_STEPS.map(({ title, detail }, index) => (
             <div key={index} className='flex flex-col box px-4 py-4 shadow-sm'>
               <div>
@@ -97,9 +97,11 @@ export default function Home() {
                 </p>
               ))}
             </div>
-            <Link href='/dashboard' className='btn btn-primary'>
-              Try now
-            </Link>
+            <div>
+              <Link href='/dashboard' className='btn btn-primary'>
+                Try now
+              </Link>
+            </div>
           </div>
         </div>
       </div>

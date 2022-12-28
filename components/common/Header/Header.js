@@ -40,7 +40,7 @@ const scrollOffset = -60
 const LandingHeaderContent = () => {
   return (
     <Fragment>
-      <div className='space-x-12'>
+      <div className='space-x-12 hidden md:block'>
         <ScrollLink
           activeClass={s.active}
           to='how-it-works'
@@ -62,10 +62,15 @@ const LandingHeaderContent = () => {
           Pricing
         </ScrollLink>
       </div>
-      <div>
-        <Link href='/dashboard' className='btn btn-primary mr-6'>
-          Get Started
-        </Link>
+      <div className='flex items-center'>
+        <div>
+          <Link href='/dashboard' className='btn btn-primary mr-4 md:mr-0'>
+            Get Started
+          </Link>
+        </div>
+        <button className='md:hidden flex justify-center items-center rounded w-10 h-10 hover:bg-gray-200 text-xl'>
+          <TbMenu2 />
+        </button>
       </div>
     </Fragment>
   )
