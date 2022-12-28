@@ -29,17 +29,10 @@ const EditorNav = ({ title, onTitleSubmit }) => {
           </button>
           <Link href='/' className='flex items-center hover:opacity-80'>
             <Image
-              src='/logo.svg'
-              width={20}
-              height={20}
-              className='mr-2 h-9 w-auto md:inline-block hidden'
-              alt='logo'
-            />
-            <Image
               src='/logo-mini.svg'
               width={20}
               height={20}
-              className='mr-2 h-9 w-auto inline-block md:hidden'
+              className='mr-2 h-9 w-auto'
               alt='logo'
             />
           </Link>
@@ -61,7 +54,7 @@ const EditorNav = ({ title, onTitleSubmit }) => {
           </span>
         </form>
         <div>
-          <button>
+          <button className='flex justify-center items-center rounded w-10 h-10 hover:bg-gray-200 text-xl'>
             <TbMenu2 />
           </button>
         </div>

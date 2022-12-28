@@ -72,7 +72,9 @@ const LandingHeaderContent = () => {
             Get Started
           </Link>
         </div>
-        <MobileMenu />
+        <div className='md:hidden'>
+          <MobileMenu />
+        </div>
       </div>
     </Fragment>
   )
@@ -93,11 +95,13 @@ const DashboardHeaderContent = () => {
   }
 
   return (
-    <div>
-      <button className='btn btn-primary mr-6' onClick={handleCreate}>
-        Create
-      </button>
-      <button>
+    <div className='flex items-center'>
+      {/* <div>
+        <button className='btn btn-ghost mr-6' onClick={handleCreate}>
+          Create
+        </button>
+      </div> */}
+      <button className='flex justify-center items-center rounded w-10 h-10 hover:bg-gray-200 text-xl'>
         <TbMenu2 />
       </button>
     </div>
@@ -105,7 +109,7 @@ const DashboardHeaderContent = () => {
 }
 
 const MobileMenu = () => (
-  <Menu as='div' className='relative md:hidden'>
+  <Menu as='div' className='relative'>
     <Menu.Button className='flex justify-center items-center rounded w-10 h-10 hover:bg-gray-200 text-xl'>
       <TbMenu2 />
     </Menu.Button>

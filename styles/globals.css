@@ -25,6 +25,10 @@ body {
     @apply hover:bg-indigo-600;
 }
 
+.btn-primary:disabled {
+    @apply opacity-80 shadow-none hover:bg-indigo-500
+}
+
 .btn-success {
     @apply text-teal-50 bg-teal-500 border-teal-400 shadow-teal-300;
     @apply hover:bg-teal-600;

@@ -12,6 +12,7 @@ import {
   selectCurrentResume,
   selectEditorStatus,
 } from '../../store/editorSlice'
+import { TbDownload } from 'react-icons/tb'
 
 const Edit = () => {
   const currentResume = useSelector(selectCurrentResume)
@@ -46,8 +47,16 @@ const Edit = () => {
             <Editor value={currentResume.content} onChange={handleOnChange} />
           </div>
           <div className='col-span-1'>
+            <small className='text-gray-500'>
+              <i>Coming soon</i>
+            </small>
+            <button
+              disabled
+              className='btn btn-primary flex justify-center items-center mb-4 w-full'
+            >
+              <TbDownload className='mr-2' /> Save to PC
+            </button>
             <h2 className='font-bold text-gray-700 mb-4'>Preview</h2>
-            {/* <ResumePreview id={id} content={currentResume.content} /> */}
             <ResumePreview resume={currentResume} />
           </div>
         </div>
