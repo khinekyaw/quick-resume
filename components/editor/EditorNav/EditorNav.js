@@ -30,9 +30,16 @@ const EditorNav = ({ title, onTitleSubmit }) => {
           <Link href='/' className='flex items-center hover:opacity-80'>
             <Image
               src='/logo.svg'
-              width={36}
-              height={36}
-              className='mr-2'
+              width={20}
+              height={20}
+              className='mr-2 h-9 w-auto md:inline-block hidden'
+              alt='logo'
+            />
+            <Image
+              src='/logo-mini.svg'
+              width={20}
+              height={20}
+              className='mr-2 h-9 w-auto inline-block md:hidden'
               alt='logo'
             />
           </Link>
