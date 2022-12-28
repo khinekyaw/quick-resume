@@ -3,6 +3,7 @@ import Link from 'next/link'
 import { useRouter } from 'next/router'
 import { Fragment } from 'react'
 import { TbMenu2 } from 'react-icons/tb'
+import { Menu } from '@headlessui/react'
 import { Link as ScrollLink } from 'react-scroll'
 
 import { resumeLocalStore } from '../../../utils/localStorage'
@@ -36,6 +37,7 @@ const Header = ({ variant = 'landing' }) => {
 }
 
 const scrollOffset = -60
+const scrollDuration = 300
 
 const LandingHeaderContent = () => {
   return (
@@ -48,6 +50,7 @@ const LandingHeaderContent = () => {
           smooth={true}
           className={s.scrollLink}
           offset={scrollOffset}
+          duration={scrollDuration}
         >
           How it works
         </ScrollLink>
@@ -58,6 +61,7 @@ const LandingHeaderContent = () => {
           smooth={true}
           className={s.scrollLink}
           offset={scrollOffset}
+          duration={scrollDuration}
         >
           Pricing
         </ScrollLink>
@@ -68,9 +72,7 @@ const LandingHeaderContent = () => {
             Get Started
           </Link>
         </div>
-        <button className='md:hidden flex justify-center items-center rounded w-10 h-10 hover:bg-gray-200 text-xl'>
-          <TbMenu2 />
-        </button>
+        <MobileMenu />
       </div>
     </Fragment>
   )
@@ -101,5 +103,47 @@ const DashboardHeaderContent = () => {
     </div>
   )
 }
+
+const MobileMenu = () => (
+  <Menu as='div' className='relative md:hidden'>
+    <Menu.Button className='flex justify-center items-center rounded w-10 h-10 hover:bg-gray-200 text-xl'>
+      <TbMenu2 />
+    </Menu.Button>
+    <Menu.Items className='absolute w-48 mt-2 right-0 z-10 bg-white shadow-md border rounded py-1'>
+      <Menu.Item
+        as='button'
+        className='flex items-center px-4 py-3 hover:bg-gray-100 w-full border-b'
+      >
+        <ScrollLink
+          activeClass={s.active}
+          to='how-it-works'
+          spy={true}
+          smooth={true}
+          className={s.scrollLink}
+          offset={scrollOffset}
+          duration={scrollDuration}
+        >
+          How it works
+        </ScrollLink>
+      </Menu.Item>
+      <Menu.Item
+        as='button'
+        className='flex items-center px-4 py-3 hover:bg-gray-100 w-full'
+      >
+        <ScrollLink
+          activeClass={s.active}
+          to='pricing'
+          spy={true}
+          smooth={true}
+          className={s.scrollLink}
+          offset={scrollOffset}
+          duration={scrollDuration}
+        >
+          Pricing
+        </ScrollLink>
+      </Menu.Item>
+    </Menu.Items>
+  </Menu>
+)
 
 export default Header

@@ -70,7 +70,7 @@ body {
 }
 
 .header {
-    @apply bg-white opacity-95 backdrop-blur-lg fixed w-full z-50;
+    @apply bg-white opacity-100 backdrop-blur-lg fixed w-full z-50;
 }
 
 .two-block {
