@@ -34,7 +34,7 @@ const ResumePreview = ({ resume }) => {
   }, [])
 
   return (
-    <div ref={wrapperRef} className='relative h-64'>
+    <div ref={wrapperRef} className='relative h-80'>
       {resume ? (
         <Slate key={slateKey} editor={editor} value={resume.content}>
           <Editable

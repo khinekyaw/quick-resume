@@ -1,7 +1,9 @@
+import Image from 'next/image'
 import { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 
 import Layout from '../components/common/Layout'
+import MobileVoid from '../components/misc/MobileVoid/MobileVoid'
 import CreateCard from '../components/resume/CreateCard/CreateCard'
 import PreviewCard from '../components/resume/PreviewCard/PreviewCard'
 import { deleteResume, setResumes, updateResume } from '../store/resumeSlice'
@@ -30,7 +32,7 @@ export default function Home() {
   return (
     <Layout headerVariant='dashboard'>
       <div className='section py-10'>
-        <div className='grid grid-col-1 sm:grid-cols-2 md:grid-cols-3 w-full gap-6'>
+        <div className='md:grid hidden grid-col-1 sm:grid-cols-2 md:grid-cols-3 w-full gap-6'>
           {[...resumes].reverse().map(resume => (
             <PreviewCard
               key={resume.id}
@@ -41,6 +43,7 @@ export default function Home() {
           ))}
           <CreateCard />
         </div>
+        <MobileVoid />
       </div>
     </Layout>
   )

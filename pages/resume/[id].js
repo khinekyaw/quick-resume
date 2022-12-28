@@ -13,6 +13,7 @@ import {
   selectEditorStatus,
 } from '../../store/editorSlice'
 import { TbDownload } from 'react-icons/tb'
+import MobileVoid from '../../components/misc/MobileVoid/MobileVoid'
 
 const Edit = () => {
   const currentResume = useSelector(selectCurrentResume)
@@ -42,7 +43,7 @@ const Edit = () => {
   } else if (editorStatus === 'succeeded') {
     pageContent = (
       <div className='section my-8'>
-        <div className='grid grid-cols-4 gap-7 w-full'>
+        <div className='md:grid hidden grid-cols-1 md:grid-cols-4 gap-7 w-full'>
           <div className='col-span-3'>
             <Editor value={currentResume.content} onChange={handleOnChange} />
           </div>
@@ -60,6 +61,7 @@ const Edit = () => {
             <ResumePreview resume={currentResume} />
           </div>
         </div>
+        <MobileVoid />
       </div>
     )
   } else if (editorStatus === 'failed') {
