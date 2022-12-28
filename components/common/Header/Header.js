@@ -3,8 +3,10 @@ import Link from 'next/link'
 import { useRouter } from 'next/router'
 import { Fragment } from 'react'
 import { TbMenu2 } from 'react-icons/tb'
+import { Link as ScrollLink } from 'react-scroll'
 
 import { resumeLocalStore } from '../../../utils/localStorage'
+import s from './Header.module.css'
 
 const Header = ({ variant = 'landing' }) => {
   return (
@@ -33,12 +35,32 @@ const Header = ({ variant = 'landing' }) => {
   )
 }
 
+const scrollOffset = -60
+
 const LandingHeaderContent = () => {
   return (
     <Fragment>
       <div className='space-x-12'>
-        <Link href='#'>How it works</Link>
-        <Link href='#'>Pricing</Link>
+        <ScrollLink
+          activeClass={s.active}
+          to='how-it-works'
+          spy={true}
+          smooth={true}
+          className={s.scrollLink}
+          offset={scrollOffset}
+        >
+          How it works
+        </ScrollLink>
+        <ScrollLink
+          activeClass={s.active}
+          to='pricing'
+          spy={true}
+          smooth={true}
+          className={s.scrollLink}
+          offset={scrollOffset}
+        >
+          Pricing
+        </ScrollLink>
       </div>
       <div>
         <Link href='/dashboard' className='btn btn-primary mr-6'>

@@ -23,7 +23,7 @@ export default function Home() {
   return (
     <Layout>
       {/* Hero */}
-      <div className='bg-white'>
+      <div id='hero' className='bg-white'>
         <div className='section py-12'>
           <div className='w-full grid gap-4 grid-cols-2'>
             <div className='col-span-1'>
@@ -43,6 +43,7 @@ export default function Home() {
                 height={256}
                 src='/hero.svg'
                 className='h-72 w-auto'
+                alt='hero'
               />
             </div>
           </div>
@@ -50,13 +51,13 @@ export default function Home() {
       </div>
       {/* Hero - End */}
       {/* How it works */}
-      <div className='section py-10 flex-col'>
+      <div id='how-it-works' className='section py-10 flex-col'>
         <h2 className='text-2xl font-semibold mb-6 border-b-2 border-dashed border-indigo-500'>
           How it works
         </h2>
         <div className='grid gap-4 grid-cols-3 w-full'>
           {HIW_STEPS.map(({ title, detail }, index) => (
-            <div className='flex flex-col box px-4 py-4 shadow-sm'>
+            <div key={index} className='flex flex-col box px-4 py-4 shadow-sm'>
               <div>
                 <h3 className='text-indigo-500 font-bold text-2xl mr-2'>
                   {index + 1}.
@@ -72,9 +73,11 @@ export default function Home() {
           height={256}
           src='/how-it-works.svg'
           className=' h-56 w-auto my-8'
+          alt='How it works'
         />
       </div>
-      <div className='bg-white'>
+      {/* How it works - End */}
+      <div id='pricing' className='bg-white'>
         <div className='section py-10 flex-col'>
           <h2 className='text-2xl font-semibold mb-6 border-b-2 border-dashed border-indigo-500'>
             Pricing
@@ -88,7 +91,7 @@ export default function Home() {
                 'Write impressive cover letters',
                 'Access to relevent jobs',
               ].map(i => (
-                <p className='mb-2'>
+                <p key={i} className='mb-2'>
                   <TbCheck className='inline-block text-xl text-indigo-500 mr-2' />
                   {i}
                 </p>
@@ -100,7 +103,6 @@ export default function Home() {
           </div>
         </div>
       </div>
-      {/* How it works - End */}
     </Layout>
   )
 }
