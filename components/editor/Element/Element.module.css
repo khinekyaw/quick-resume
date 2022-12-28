@@ -16,13 +16,13 @@
 }
 
 .bulletList {
-    @apply list-disc list-inside;
+    @apply list-disc list-outside px-6;
 }
 
 /* blocks */
 .twoBlock,
 .threeBlock {
-    @apply grid gap-2 -mx-2;
+    @apply grid gap-2 -mx-2 my-2;
 }
 
 .twoBlock {
@@ -34,9 +34,19 @@
 }
 
 .blockChild {
-    @apply p-2 border rounded-md;
+    @apply px-2 py-1 border rounded-md;
 }
 
 .inlineChromiumBugfix {
     font-size: 0;
+}
+
+/* preview style */
+.twoBlock.preview,
+.threeBlock.preview {
+    @apply mx-0;
+}
+
+.blockChild.preview {
+    @apply border-none px-0;
 }
