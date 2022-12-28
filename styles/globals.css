@@ -25,6 +25,11 @@ body {
     @apply hover:bg-indigo-600;
 }
 
+.btn-primary.btn-outline {
+    @apply text-indigo-500 bg-transparent border border-indigo-500 shadow-none;
+    @apply hover:text-indigo-50 hover:bg-indigo-600;
+}
+
 .btn-primary:disabled {
     @apply opacity-80 shadow-none hover:bg-indigo-500
 }

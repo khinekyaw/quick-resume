@@ -68,7 +68,10 @@ const LandingHeaderContent = () => {
       </div>
       <div className='flex items-center'>
         <div>
-          <Link href='/dashboard' className='btn btn-primary mr-4 md:mr-0'>
+          <Link
+            href='/dashboard'
+            className='btn btn-primary btn-outline mr-4 md:mr-0'
+          >
             Get Started
           </Link>
         </div>
