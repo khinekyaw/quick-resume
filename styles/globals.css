@@ -10,7 +10,7 @@ body {
 
 .btn, .input, .card {
     @apply transition-all duration-200;
-    @apply rounded-xl
+    @apply rounded-lg;
 }
 
 .btn {

@@ -27,31 +27,48 @@ const Link = ({ attributes, children, element }) => {
 }
 
 const Element = props => {
-  const { attributes, children, element } = props
+  const { attributes, children, element, preview, theme } = props
+  const styleClasses = cn(preview && s.preview, theme && s[theme])
   const style = { textAlign: element.align }
 
   switch (element.type) {
     case 'h1':
       return (
-        <h1 style={style} className={s.headingOne} {...attributes}>
+        <h1
+          style={style}
+          className={cn(s.headingOne, styleClasses)}
+          {...attributes}
+        >
           {children}
         </h1>
       )
     case 'h2':
       return (
-        <h2 style={style} className={s.headingTwo} {...attributes}>
+        <h2
+          style={style}
+          className={cn(s.headingTwo, styleClasses)}
+          {...attributes}
+        >
           {children}
         </h2>
       )
     case 'h3':
       return (
-        <h3 style={style} className={s.headingThree} {...attributes}>
+        <h3
+          style={style}
+          className={cn(s.headingThree, styleClasses)}
+          {...attributes}
+        >
           {children}
         </h3>
       )
     case 'bullet-list':
       return (
-        <ul className={s.bulletList} style={style} {...attributes}>
+        <ul
+          className={cn(s.bulletList, styleClasses)}
+          style={style}
+          {...attributes}
+        >
           {children}
         </ul>
       )
@@ -63,19 +80,19 @@ const Element = props => {
       )
     case 'two-block':
       return (
-        <div className={s.twoBlock} {...attributes}>
+        <div className={cn(s.twoBlock, styleClasses)} {...attributes}>
           {children}
         </div>
       )
     case 'three-block':
       return (
-        <div className={s.threeBlock} {...attributes}>
+        <div className={cn(s.threeBlock, styleClasses)} {...attributes}>
           {children}
         </div>
       )
     case 'block-child':
       return (
-        <div className={s.blockChild} {...attributes}>
+        <div className={cn(s.blockChild, styleClasses)} {...attributes}>
           {children}
         </div>
       )
