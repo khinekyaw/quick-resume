@@ -7,7 +7,7 @@ const Layout = ({ title, children, headerVariant, showNav = true }) => {
   return (
     <Fragment>
       <Head>
-        <title>{title ? title + ' | Quick Resume' : 'Quick Resume'}</title>
+        <title>{title ? title + ' | Resumera' : 'Resumera'}</title>
         <meta name='description' content='Quick resume editor' />
         <link rel='icon' href='/favicon.ico' />
       </Head>
