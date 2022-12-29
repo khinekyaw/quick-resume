@@ -1,4 +1,3 @@
-import Image from 'next/image'
 import { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 
@@ -6,16 +5,15 @@ import Layout from '../components/common/Layout'
 import MobileVoid from '../components/misc/MobileVoid/MobileVoid'
 import CreateCard from '../components/resume/CreateCard/CreateCard'
 import PreviewCard from '../components/resume/PreviewCard/PreviewCard'
-import { deleteResume, setResumes, updateResume } from '../store/resumeSlice'
+import { deleteResume, selectResumes, setResumes, updateResume } from '../store/resumeSlice'
 import { resumeLocalStore } from '../utils/localStorage'
 
 export default function Home() {
-  const resumes = useSelector(state => state.resumes)
+  const resumes = useSelector(selectResumes)
   const dispatch = useDispatch()
 
   useEffect(() => {
     dispatch(setResumes(resumeLocalStore.all()))
-    return () => dispatch(setResumes([]))
   }, [])
 
   const handleDelete = resume => () => {
