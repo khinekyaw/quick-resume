@@ -9,6 +9,7 @@ import Editor from '../../components/editor/Editor'
 import {
   fetchResume,
   updateCurrentResume,
+  setStatus,
   selectCurrentResume,
   selectEditorStatus,
 } from '../../store/editorSlice'
@@ -27,6 +28,12 @@ const Edit = () => {
       dispatch(fetchResume(id))
     }
   }, [id, editorStatus])
+
+  useEffect(() => {
+    if (id && currentResume && currentResume.id !== id) {
+      dispatch(setStatus('idle'))
+    }
+  }, [id])
 
   const handleTitleSubmit = title => {
     dispatch(updateCurrentResume({ title }))
