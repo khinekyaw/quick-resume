@@ -12,6 +12,8 @@ import {
   selectCurrentResume,
   selectEditorStatus,
 } from '../../store/editorSlice'
+import { TbDownload } from 'react-icons/tb'
+import MobileVoid from '../../components/misc/MobileVoid/MobileVoid'
 
 const Edit = () => {
   const currentResume = useSelector(selectCurrentResume)
@@ -41,16 +43,25 @@ const Edit = () => {
   } else if (editorStatus === 'succeeded') {
     pageContent = (
       <div className='section my-8'>
-        <div className='grid grid-cols-4 gap-7 w-full'>
+        <div className='md:grid hidden grid-cols-1 md:grid-cols-4 gap-7 w-full'>
           <div className='col-span-3'>
             <Editor value={currentResume.content} onChange={handleOnChange} />
           </div>
           <div className='col-span-1'>
+            <small className='text-gray-500'>
+              <i>Coming soon</i>
+            </small>
+            <button
+              disabled
+              className='btn btn-primary flex justify-center items-center mb-4 w-full'
+            >
+              <TbDownload className='mr-2' /> Save to PC
+            </button>
             <h2 className='font-bold text-gray-700 mb-4'>Preview</h2>
-            {/* <ResumePreview id={id} content={currentResume.content} /> */}
             <ResumePreview resume={currentResume} />
           </div>
         </div>
+        <MobileVoid />
       </div>
     )
   } else if (editorStatus === 'failed') {

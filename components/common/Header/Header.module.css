@@ -1,0 +1,8 @@
+
+.scrollLink {
+    @apply transition-all duration-300 hover:text-indigo-500 cursor-pointer;
+}
+
+.scrollLink.active {
+    @apply text-indigo-500;
+}

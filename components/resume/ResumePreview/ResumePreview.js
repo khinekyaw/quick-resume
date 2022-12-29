@@ -1,4 +1,3 @@
-import dynamic from 'next/dynamic'
 import React, { useEffect, useMemo, useRef, useState } from 'react'
 import { createEditor } from 'slate'
 import { withHistory } from 'slate-history'
@@ -35,12 +34,12 @@ const ResumePreview = ({ resume }) => {
   }, [])
 
   return (
-    <div ref={wrapperRef} className='relative bg-blue-100 h-64'>
+    <div ref={wrapperRef} className='relative h-80'>
       {resume ? (
         <Slate key={slateKey} editor={editor} value={resume.content}>
           <Editable
             readOnly
-            renderElement={Element}
+            renderElement={props => <Element {...props} preview={true} />}
             renderLeaf={Leaf}
             className='absolute p-10 bg-white left-0 top-0 origin-top-left overflow-hidden rounded-xl shadow-lg'
             style={{
