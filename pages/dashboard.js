@@ -26,7 +26,7 @@ export default function Home() {
   }
 
   const handleTitleSubmit = resume => title => {
-    dispatch(updateResume({ id: resume.id, title }))
+    dispatch(updateResume(resume.id, { title }))
   }
 
   return (

@@ -17,30 +17,28 @@ const resumeSlice = createSlice({
     setItems(state, action) {
       return { ...state, items: action.payload }
     },
-    updateResume(state, action) {
-      const updateItem = action.payload
+    updateItem(state, action) {
+      const { id, ...data } = action.payload
       state = { 
         ...state,
         items: state.items.map(item =>
-          item.id === updateItem.id ? { ...item, ...updateItem } : item
+          item.id === id ? { ...item, ...data } : item
         )
       }
-      resumeLocalStore.set(state.items)
       return state
     },
-    deleteResume(state, action) {
+    deleteItem(state, action) {
       const id = action.payload
       state = {
         ...state,
         items: state.items.filter(item => item.id !== id)
       }
-      resumeLocalStore.set(state.items)
       return state
     },
   },
 })
 
-export const { setStatus, setItems , updateResume, deleteResume } = resumeSlice.actions
+export const { setStatus, setItems , updateItem, deleteItem } = resumeSlice.actions
 
 export const fetchResumes = () => {
   return async dispatch => {
@@ -48,6 +46,20 @@ export const fetchResumes = () => {
     const resumes = resumeLocalStore.all()
     dispatch(setItems(resumes))
     dispatch(setStatus('succeeded'))
+  }
+}
+
+export const updateResume = (id, data) => {
+  return async dispatch => {
+    resumeLocalStore.update({ id, ...data })
+    dispatch(updateItem({ id, ...data }))
+  }
+}
+
+export const deleteResume = id => {
+  return async dispatch => {
+    resumeLocalStore._delete(id)
+    dispatch(deleteItem(id))
   }
 }
 
