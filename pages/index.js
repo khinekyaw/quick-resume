@@ -14,7 +14,7 @@ const HIW_STEPS = [
     detail: 'Fine tune formatting and try out various styles',
   },
   {
-    title: 'Download you resume',
+    title: 'Download your resume',
     detail: 'Download your resume instantly and make changes afterwards',
   },
 ]
