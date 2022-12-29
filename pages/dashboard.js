@@ -5,16 +5,18 @@ import Layout from '../components/common/Layout'
 import MobileVoid from '../components/misc/MobileVoid/MobileVoid'
 import CreateCard from '../components/resume/CreateCard/CreateCard'
 import PreviewCard from '../components/resume/PreviewCard/PreviewCard'
-import { deleteResume, selectResumes, setResumes, updateResume } from '../store/resumeSlice'
-import { resumeLocalStore } from '../utils/localStorage'
+import { deleteResume, fetchResumes, selectResumes, selectStatus, updateResume } from '../store/resumeSlice'
 
 export default function Home() {
   const resumes = useSelector(selectResumes)
+  const status = useSelector(selectStatus)
   const dispatch = useDispatch()
 
   useEffect(() => {
-    dispatch(setResumes(resumeLocalStore.all()))
-  }, [])
+    if (status === 'idle') {
+      dispatch(fetchResumes())
+    }
+  }, [status, dispatch])
 
   const handleDelete = resume => () => {
     const confirm = window.confirm(

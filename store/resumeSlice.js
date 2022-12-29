@@ -3,14 +3,18 @@ import { resumeLocalStore } from '../utils/localStorage'
 const { createSlice } = require('@reduxjs/toolkit')
 
 const initialState = {
-  items: []
+  status: 'idle',
+  items: [],
 }
 
 const resumeSlice = createSlice({
   name: 'resumes',
   initialState,
   reducers: {
-    setResumes(state, action) {
+    setStatus(state, action) {
+      return { ...state, status: action.payload }
+    },
+    setItems(state, action) {
       return { ...state, items: action.payload }
     },
     updateResume(state, action) {
@@ -36,8 +40,18 @@ const resumeSlice = createSlice({
   },
 })
 
-export const { setResumes, updateResume, deleteResume } = resumeSlice.actions
+export const { setStatus, setItems , updateResume, deleteResume } = resumeSlice.actions
+
+export const fetchResumes = () => {
+  return async dispatch => {
+    dispatch(setStatus('loading'))
+    const resumes = resumeLocalStore.all()
+    dispatch(setItems(resumes))
+    dispatch(setStatus('succeeded'))
+  }
+}
 
 export const selectResumes = state => state.resumes.items
+export const selectStatus = state => state.resumes.status
 
 export default resumeSlice.reducer
