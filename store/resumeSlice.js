@@ -1,3 +1,4 @@
+import { newID } from '../utils/id'
 import { resumeLocalStore } from '../utils/localStorage'
 
 const { createSlice } = require('@reduxjs/toolkit')
@@ -16,6 +17,9 @@ const resumeSlice = createSlice({
     },
     setItems(state, action) {
       return { ...state, items: action.payload }
+    },
+    addItem(state, action) {
+      return { ...state, items: [...state.items, action.payload ]}
     },
     updateItem(state, action) {
       const { id, ...data } = action.payload
@@ -38,7 +42,7 @@ const resumeSlice = createSlice({
   },
 })
 
-export const { setStatus, setItems , updateItem, deleteItem } = resumeSlice.actions
+export const { setStatus, setItems, addItem, updateItem, deleteItem } = resumeSlice.actions
 
 export const fetchResumes = () => {
   return async dispatch => {
@@ -46,6 +50,15 @@ export const fetchResumes = () => {
     const resumes = resumeLocalStore.all()
     dispatch(setItems(resumes))
     dispatch(setStatus('succeeded'))
+  }
+}
+
+export const createResume = data => {
+  return async dispatch => {
+    const id = newID()
+    const updatedAt = new Date().toLocaleString()
+    resumeLocalStore.add({ id, updatedAt, ...data })
+    dispatch(addItem({ id, ...data }))
   }
 }
 

@@ -1,21 +1,19 @@
 import Image from 'next/image'
 import { useRouter } from 'next/router'
+import { useDispatch } from 'react-redux'
 
 import { editorDefaultValue } from '../../../utils/editor'
-import { resumeLocalStore } from '../../../utils/localStorage'
+import { createResume } from '../../../store/resumeSlice'
 
 const CreateCard = () => {
   const router = useRouter()
+  const dispatch = useDispatch()
 
   const handleCreate = () => {
-    const id = new Date().getTime()
-    resumeLocalStore.add({
-      id: String(id),
-      updatedAt: new Date().toLocaleString(),
+    dispatch(createResume({
       title: 'Untitled',
       content: editorDefaultValue,
-    })
-    router.push(`resume/${id}`)
+    }))
   }
 
   return (
