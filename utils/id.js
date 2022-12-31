@@ -1,3 +1,3 @@
-export const newID = () => {
+export const newId = () => {
   return new Date().getTime().toString()
 }

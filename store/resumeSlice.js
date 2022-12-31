@@ -1,11 +1,12 @@
-import { newID } from '../utils/id'
+import { newId } from '../utils/id'
 import { resumeLocalStore } from '../utils/localStorage'
 
 const { createSlice } = require('@reduxjs/toolkit')
 
 const initialState = {
   status: 'idle',
-  items: [],
+  statusById: {},
+  byId: {},
 }
 
 const resumeSlice = createSlice({
@@ -15,47 +16,52 @@ const resumeSlice = createSlice({
     setStatus(state, action) {
       return { ...state, status: action.payload }
     },
-    setItems(state, action) {
-      return { ...state, items: action.payload }
-    },
     addItem(state, action) {
-      return { ...state, items: [...state.items, action.payload ]}
+      return {
+        ...state,
+        byId: { ...state.byId, [action.payload.id]: action.payload },
+      }
     },
     updateItem(state, action) {
       const { id, ...data } = action.payload
-      state = { 
+      return {
         ...state,
-        items: state.items.map(item =>
-          item.id === id ? { ...item, ...data } : item
-        )
+        byId: {
+          ...state.byId,
+          [id]: { ...state.byId[id], ...data }
+        },
       }
-      return state
     },
     deleteItem(state, action) {
       const id = action.payload
-      state = {
+      const {
+        [id]: _,
+        ...rest
+      } = state.byId
+      return {
         ...state,
-        items: state.items.filter(item => item.id !== id)
+        byId: rest
       }
-      return state
     },
   },
 })
 
-export const { setStatus, setItems, addItem, updateItem, deleteItem } = resumeSlice.actions
+const { setStatus, addItem, updateItem, deleteItem } = resumeSlice.actions
 
 export const fetchResumes = () => {
   return async dispatch => {
     dispatch(setStatus('loading'))
     const resumes = resumeLocalStore.all()
-    dispatch(setItems(resumes))
+    resumes.forEach(r => {
+      dispatch(addItem(r))
+    });
     dispatch(setStatus('succeeded'))
   }
 }
 
 export const createResume = data => {
   return async dispatch => {
-    const id = newID()
+    const id = newId()
     const updatedAt = new Date().toLocaleString()
     resumeLocalStore.add({ id, updatedAt, ...data })
     dispatch(addItem({ id, ...data }))
@@ -76,7 +82,7 @@ export const deleteResume = id => {
   }
 }
 
-export const selectResumes = state => state.resumes.items
+export const selectResumes = state => Object.values(state.resumes.byId)
 export const selectStatus = state => state.resumes.status
 
 export default resumeSlice.reducer
