@@ -1,5 +1,5 @@
 import { useRouter } from 'next/router'
-import { useEffect } from 'react'
+import { useEffect, useCallback } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 
 import ResumePreview from '../../components/resume/ResumePreview'
@@ -7,52 +7,45 @@ import EditorNav from '../../components/editor/EditorNav'
 import Layout from '../../components/common/Layout'
 import Editor from '../../components/editor/Editor'
 import {
-  fetchResume,
-  updateCurrentResume,
-  setStatus,
-  selectCurrentResume,
-  selectEditorStatus,
-} from '../../store/editorSlice'
+  fetchResumeById,
+  updateResumeById,
+  selectResumeById,
+  selectStatusById,
+  selectErrorById,
+} from '../../store/resumeSlice'
 import { TbDownload } from 'react-icons/tb'
 import MobileVoid from '../../components/misc/MobileVoid/MobileVoid'
 
 const Edit = () => {
-  const currentResume = useSelector(selectCurrentResume)
-  const editorStatus = useSelector(selectEditorStatus)
-  const dispatch = useDispatch()
   const router = useRouter()
   const { id } = router.query
+  const resume = useSelector(selectResumeById(id))
+  const status = useSelector(selectStatusById(id))
+  const error = useSelector(selectErrorById(id))
+  const dispatch = useDispatch()
 
   useEffect(() => {
-    if (editorStatus === 'idle' && id) {
-      dispatch(fetchResume(id))
-    }
-  }, [id, editorStatus])
-
-  useEffect(() => {
-    if (id && currentResume && currentResume.id !== id) {
-      dispatch(setStatus('idle'))
-    }
+    dispatch(fetchResumeById(id))
   }, [id])
 
-  const handleTitleSubmit = title => {
-    dispatch(updateCurrentResume({ title }))
-  }
+  const handleTitleSubmit = useCallback(title => {
+    dispatch(updateResumeById(id, { title }))
+  }, [id])
 
-  const handleOnChange = value => {
-    dispatch(updateCurrentResume({ content: value }))
-  }
+  const handleOnChange = useCallback(value => {
+    dispatch(updateResumeById(id, { content: value }))
+  }, [id])
 
   let pageContent
 
-  if (editorStatus === 'loading') {
+  if (status === 'idle' || status === 'loading') {
     pageContent = <p>Loading...</p>
-  } else if (editorStatus === 'succeeded') {
+  } else if (status === 'succeeded') {
     pageContent = (
       <div className='section my-8'>
         <div className='md:grid hidden grid-cols-1 md:grid-cols-4 gap-7 w-full'>
           <div className='col-span-3'>
-            <Editor value={currentResume.content} onChange={handleOnChange} />
+            <Editor value={resume.content} onChange={handleOnChange} />
           </div>
           <div className='col-span-1'>
             <small className='text-gray-500'>
@@ -65,20 +58,20 @@ const Edit = () => {
               <TbDownload className='mr-2' /> Save to PC
             </button>
             <h2 className='font-bold text-gray-700 mb-4'>Preview</h2>
-            <ResumePreview resume={currentResume} />
+            <ResumePreview resume={resume} />
           </div>
         </div>
         <MobileVoid />
       </div>
     )
-  } else if (editorStatus === 'failed') {
-    pageContent = <p>Error while loading resume!</p>
+  } else if (status === 'failed') {
+    pageContent = <p>{error}</p>
   }
 
   return (
     <Layout title='Resume Builder' showNav={false}>
       <EditorNav
-        title={currentResume && currentResume.title}
+        title={resume && resume.title}
         onTitleSubmit={handleTitleSubmit}
       />
       {pageContent}

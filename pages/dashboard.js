@@ -5,7 +5,7 @@ import Layout from '../components/common/Layout'
 import MobileVoid from '../components/misc/MobileVoid/MobileVoid'
 import CreateCard from '../components/resume/CreateCard/CreateCard'
 import PreviewCard from '../components/resume/PreviewCard/PreviewCard'
-import { deleteResume, fetchResumes, selectResumes, selectStatus, updateResume } from '../store/resumeSlice'
+import { deleteResumeById, fetchResumes, selectResumes, selectStatus, updateResumeById } from '../store/resumeSlice'
 
 export default function Home() {
   const resumes = useSelector(selectResumes)
@@ -22,11 +22,11 @@ export default function Home() {
     const confirm = window.confirm(
       `Are you sure you want to delete ${resume.title}`
     )
-    if (confirm) dispatch(deleteResume(resume.id))
+    if (confirm) dispatch(deleteResumeById(resume.id))
   }
 
   const handleTitleSubmit = resume => title => {
-    dispatch(updateResume(resume.id, { title }))
+    dispatch(updateResumeById(resume.id, { title }))
   }
 
   return (
