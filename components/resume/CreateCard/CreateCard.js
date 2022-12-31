@@ -14,6 +14,7 @@ const CreateCard = () => {
       title: 'Untitled',
       content: editorDefaultValue,
     }))
+    router.push('/resume/recent')
   }
 
   return (

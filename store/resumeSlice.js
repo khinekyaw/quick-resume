@@ -7,6 +7,7 @@ const initialState = {
   status: 'idle',
   statusById: {},
   byId: {},
+  recentlyActiveId: null,
 }
 
 const resumeSlice = createSlice({
@@ -20,6 +21,7 @@ const resumeSlice = createSlice({
       return {
         ...state,
         byId: { ...state.byId, [action.payload.id]: action.payload },
+        recentlyActiveId: action.payload.id,
       }
     },
     updateItem(state, action) {
@@ -30,6 +32,7 @@ const resumeSlice = createSlice({
           ...state.byId,
           [id]: { ...state.byId[id], ...data }
         },
+        recentlyActiveId: id,
       }
     },
     deleteItem(state, action) {
@@ -40,7 +43,7 @@ const resumeSlice = createSlice({
       } = state.byId
       return {
         ...state,
-        byId: rest
+        byId: rest,
       }
     },
   },
@@ -84,5 +87,6 @@ export const deleteResume = id => {
 
 export const selectResumes = state => Object.values(state.resumes.byId)
 export const selectStatus = state => state.resumes.status
+export const selectRecentlyActiveId = state => state.resumes.recentlyActiveId
 
 export default resumeSlice.reducer
